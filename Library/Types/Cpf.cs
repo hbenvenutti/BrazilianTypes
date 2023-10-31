@@ -1,4 +1,3 @@
-using System.Globalization;
 using BrazilianTypes.Extensions;
 using BrazilianTypes.Structs;
 
@@ -8,7 +7,7 @@ public readonly struct Cpf
 {
     # region ---- constants ----------------------------------------------------
 
-    private const string ErrorMessage = "CPF is invalid.";
+    public const string ErrorMessage = "CPF is invalid.";
 
     private static readonly byte[] Mult1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
     private static readonly byte[] Mult2 = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -72,53 +71,68 @@ public readonly struct Cpf
 
     private static bool IsValid(string cpf )
     {
-        var culture = CultureInfo.InvariantCulture;
-
         if (!cpf.IsNumeric()) { return false; }
 
         if (cpf.Length != 11) { return false; }
 
-        for (var j = 0; j < 10; j++)
+        if (cpf.HasAllCharsEqual()) { return false; }
+
+        return cpf.EndsWith(
+            value: GenerateDigits(cpf[..9]),
+            StringComparison.InvariantCulture
+        );
+    }
+
+    # endregion
+
+    # region ---- generate -----------------------------------------------------
+
+    public static Cpf Generate()
+    {
+        var random = new Random();
+
+        var cpf = new byte[9];
+
+        for (var i = 0; i < cpf.Length; i++)
         {
-
-            var @char = j
-                .ToString(culture)
-                .PadLeft(
-                    totalWidth: 11,
-                    paddingChar: char.Parse(j.ToString(culture))
-                );
-
-            if (@char == cpf) { return false; }
+            cpf[i] = (byte)random.Next(10);
         }
 
-        var tempCpf = cpf[..9];
+        var str = string.Join("", cpf);
 
-        var sum = Sum(tempCpf, Mult1);
+        var digits = GenerateDigits(str);
 
-        var rest = GetRest(sum);
-
-        var digit = rest.ToString(culture);
-
-        tempCpf += digit;
-
-        sum = Sum(tempCpf, Mult2);
-
-        rest = GetRest(sum);
-
-        digit += rest.ToString(culture);
-
-        return cpf.EndsWith(digit, StringComparison.InvariantCulture);
+        return $"{str}{digits}";
     }
 
     # endregion
 
     # region ---- auxiliars ----------------------------------------------------
 
-    private static int Sum(string tempCpf, byte[] mult)
+    private static string GenerateDigits(string cpf)
+    {
+        var sum = Sum(cpf, Mult1);
+
+        var rest = GetRest(sum);
+
+        var digit1 = rest;
+
+        cpf += rest;
+
+        sum = Sum(cpf, Mult2);
+
+        rest = GetRest(sum);
+
+        var digit2 = rest;
+
+        return $"{digit1}{digit2}";
+    }
+
+    private static int Sum(string tempCpf, IReadOnlyList<byte> mult)
     {
         var sum = 0;
 
-        for (var i = 0; i < mult.Length; i++ )
+        for (var i = 0; i < mult.Count; i++ )
         {
             sum += (tempCpf[i] - '0') * mult[i];
         }
@@ -126,13 +140,13 @@ public readonly struct Cpf
         return sum;
     }
 
-    private static int GetRest(int sum)
+    private static byte GetRest(int sum)
     {
         var rest = sum % 11;
 
-        return rest < 2
+        return (byte)(rest < 2
             ? 0
-            : 11 - rest;
+            : 11 - rest);
     }
 
     # endregion
