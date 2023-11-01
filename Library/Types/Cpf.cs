@@ -3,9 +3,17 @@ using BrazilianTypes.Structs;
 
 namespace BrazilianTypes.Types;
 
+/// <summary>
+/// Representa um número de CPF (Cadastro de Pessoas Físicas) válido.
+/// </summary>
+
 public readonly struct Cpf
 {
     # region ---- constants ----------------------------------------------------
+
+    /// <summary>
+    /// Mensagem de erro padrão para CPF inválido.
+    /// </summary>
 
     public const string ErrorMessage = "CPF is invalid.";
 
@@ -18,13 +26,26 @@ public readonly struct Cpf
 
     private readonly string _value;
 
-    public string Mask => RegexPatterns.GetCpfMask(_value);
+    /// <summary>
+    /// Obtém o CPF formatado com a máscara (###.###.###-##).
+    /// </summary>
+
+    public string Mask => RegexPatterns.MaskCpf(_value);
+
+    /// <summary>
+    /// Obtém os dígitos do CPF.
+    /// </summary>
 
     public string Digits => _value[10..];
 
     # endregion
 
     # region ---- constructor --------------------------------------------------
+
+    /// <summary>
+    /// Construtor privado para criar uma instância de Cpf a partir de uma string.
+    /// </summary>
+    /// <param name="value">O valor do CPF.</param>
 
     private Cpf(string value)
     {
@@ -34,6 +55,12 @@ public readonly struct Cpf
     # endregion
 
     # region ---- parse --------------------------------------------------------
+
+    /// <summary>
+    /// Converte uma string em um objeto Cpf.
+    /// </summary>
+    /// <param name="value">A string representando o CPF.</param>
+    /// <returns>O objeto Cpf correspondente.</returns>
 
     public static Cpf Parse(string value)
     {
@@ -47,6 +74,13 @@ public readonly struct Cpf
 
         return cpf;
     }
+
+    /// <summary>
+    /// Tenta converter uma string em um objeto Cpf.
+    /// </summary>
+    /// <param name="value">A string representando o CPF.</param>
+    /// <param name="cpf">O objeto Cpf resultante, se a conversão for bem-sucedida.</param>
+    /// <returns>True se a conversão for bem-sucedida; caso contrário, False.</returns>
 
     public static bool TryParse(string value, out Cpf cpf)
     {
@@ -69,6 +103,12 @@ public readonly struct Cpf
 
     # region ---- validation ---------------------------------------------------
 
+    /// <summary>
+    /// Verifica se um CPF é válido.
+    /// </summary>
+    /// <param name="cpf">O CPF a ser validado.</param>
+    /// <returns>True se o CPF for válido; caso contrário, False.</returns>
+
     private static bool IsValid(string cpf )
     {
         if (!cpf.IsNumeric()) { return false; }
@@ -86,6 +126,11 @@ public readonly struct Cpf
     # endregion
 
     # region ---- generate -----------------------------------------------------
+
+    /// <summary>
+    /// Gera um número de CPF válido.
+    /// </summary>
+    /// <returns>O CPF gerado.</returns>
 
     public static Cpf Generate()
     {
