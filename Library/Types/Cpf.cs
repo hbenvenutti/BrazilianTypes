@@ -61,8 +61,7 @@ public readonly struct Cpf
     /// </summary>
     /// <param name="value">A string representando o CPF.</param>
     /// <returns>O objeto Cpf correspondente.</returns>
-
-    public static Cpf Parse(string value)
+    private static Cpf Parse(string value)
     {
         if (!TryParse(value, out var cpf))
         {
