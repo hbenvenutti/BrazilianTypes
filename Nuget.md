@@ -21,15 +21,66 @@ dados específicos do Brasil, como CPFs.
    - [Phone](./Nuget.md#phone--itypeuf-imaskedtype)
 5. [Contribuindo](./Nuget.md#contribuindo)
 
-<hr>
+---
 
 # Como Usar
 
 Para começar a usar a biblioteca BrazilianTypes, siga os passos abaixo:
 
 1. Adicione uma referência ao projeto onde deseja usar a biblioteca.
-2. Importe o namespace BrazilianTypes.Types.
+2. Importe o namespace `BrazilianTypes.Types` ou `BrazilianTypes.Interfaces`.
 3. Utilize os tipos e métodos conforme necessário.
+
+**Observações**
+- Os tipos são `structs`, portanto, são tipos por valor.
+- Todos os tipos possuim implicit operators para conversão de `string` para o tipo.
+- Os construtores dos tipos são privados, portanto, não é possível instanciá-los.
+- Ao passar uma string inválida para o tipo, uma exceção será lançada.
+- Para validar se uma string pode ser usada por um tipo, utilize o método `TryParse`.
+- Se você quiser criar tipos personalizados, basta criar uma classe que
+  implemente as interfaces da biblioteca.
+
+> Assim, você pode criar tipos como `Password` e `Username` que respeitam os padrões
+usados na lib. Criando as validações necessárias para a sua necessidade.
+
+Exemplo:
+
+```c#
+ public class User 
+ {
+    string Name { get; set;}
+    Cpf Cpf { get; set; }
+    Password Password { get; set; }
+    ZipCode Cep { get; set; }
+    Phone Phone { get; set; }
+    Uf Uf { get; set; }
+    Cnpj CompanyCnpj { get; set; }
+     
+     public User(
+         string name,
+         string cpf, 
+         string cep, 
+         string phone, 
+         string uf, 
+         string companyCnpj,
+         string password
+      )
+     {
+        Name = name;
+        Cpf = cpf;
+        Cep = cep;
+        Phone = phone;
+        Uf = uf;
+        CompanyCnpj = companyCnpj;
+        Password = password;
+     }
+ }
+ 
+readonly struct Password : IType<Password>
+{
+    <...> // resto do código   
+}
+```
 
 ---
 

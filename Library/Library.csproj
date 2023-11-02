@@ -7,19 +7,38 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
         <Description>Lib with logic for brazilian data types. (CPF, CNPJ, CEP, UF)</Description>
         <PackageReadmeFile>Nuget.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <PackageIcon>logo.png</PackageIcon>
+        <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
+        <PackageReleaseNotes>v1.0.2
+Alterações na documentação.
+
+v1.0.1
+Correções na documentação.
+
+v1.0.0
+Tipos implementados:
+- CPF
+- CNPJ
+- CEP
+- UF
+- Phone</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="../LICENSE" Pack="true" PackagePath=""/>
         <None Include="../Nuget.md" Pack="true" PackagePath=""/>
         <None Remove="Types\Cpf.cs~" />
+        <None Update="logo.png">
+          <Pack>True</Pack>
+          <PackagePath></PackagePath>
+        </None>
     </ItemGroup>
 
 </Project>
