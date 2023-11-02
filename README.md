@@ -52,15 +52,22 @@ dados específicos do Brasil, como CPFs.
 	>
 </div>
 
+---
+
 # Índice
 
 1. [BrazilianTypes](./README.md#braziliantypes)
 2. [Como Usar](./README.md#como-usar)
-3. [Tipos](./README.md#tipos)
-    - [CPF](./README.md#cpf)
-    - [CEP](./README.md#zipcode---cep)
-    - [UF](./README.md#uf)
-4. [Contribuindo](./README.md#contribuindo)
+3. [Interfaces](./README.md#interfaces)
+   - [IType](./README.md#itypet)
+   - [IMaskedType](./README.md#imaskedtype)
+   - [IGenerable](./README.md#igenerablet)
+4. [Tipos](./README.md#tipos)
+    - [CPF](./README.md#cpf--itypecpf-imaskedtype-igenerablecpf)
+    - [CEP](./README.md#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
+    - [UF](./README.md#uf--itypeuf)
+    - [Phone](./README.md#phone--itypeuf-imaskedtype)
+5. [Contribuindo](./README.md#contribuindo)
 
 <hr>
 
@@ -72,12 +79,54 @@ Para começar a usar a biblioteca BrazilianTypes, siga os passos abaixo:
 2. Importe o namespace BrazilianTypes.Types.
 3. Utilize os tipos e métodos conforme necessário.
 
-<hr>
+---
+
+# Interfaces
+
+## `IType<T>`
+
+A interface `IType<T>` define um tipo genérico com capacidades de parse.
+
+```csharp
+public interface IType<T>
+{
+    static abstract string ErrorMessage { get; }
+
+    static abstract bool TryParse(string value, out T type);
+}
+```
+
+## `IMaskedType`
+
+A interface `IMaskedType` define um tipo com aplicação de máscara.
+
+```csharp
+public interface IMaskedType
+{
+    string Mask { get; }
+}
+
+```
+
+## `IGenerable<T>`
+
+A interface `IGenerable<T>` define um tipo que pode ser gerado aleatoriamente.
+
+```csharp
+public interface IGenerable<out T>
+{
+    static abstract T Generate();
+}
+
+```
+
+---
 
 # Tipos
-## CPF
 
-O tipo Cpf representa um número de CPF (Cadastro de Pessoas Físicas) válido.
+## `Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>`
+
+O tipo `Cpf` representa um número de CPF (Cadastro de Pessoas Físicas) válido.
 
 ### Exemplo:
 
@@ -94,13 +143,13 @@ string str = cpf;  // 12345678901
 
 ### Propriedades
 
-- **Mask**: Obtém o CPF formatado com a máscara (###.###.###-##).
+- `Mask`: Obtém o CPF formatado com a máscara (###.###.###-##).
 
 ```csharp 
 string mask = cpf.Mask; // 123.456.789-01
 ```
 
-- **Digits**: Obtém os dígitos do CPF.
+- `Digits`: Obtém os dígitos do CPF.
 
 ```csharp 
 string digits = cpf.Digits; // 01
@@ -108,21 +157,24 @@ string digits = cpf.Digits; // 01
 
 ### Métodos
 
-- **TryParse**: Tenta converter uma string em um objeto Cpf.
+- `TryParse`: Tenta converter uma string em um objeto Cpf.
 
 ```csharp 
 bool isValid = Cpf.TryParse(string value, out Cpf cpf)
 ```
 
-- **Generate**: Gera um número de CPF válido.
+- `Generate`: Gera um número de CPF válido.
 
 ```csharp 
 Cpf cpf = Cpf.Generate()
 ```
 
-## ZipCode - CEP
+---
 
-O tipo ZipCode representa um número de CEP (Código de Endereçamento Postal) Brasileiro
+## `ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode>`
+
+O tipo `ZipCode` representa um número de CEP (Código de Endereçamento Postal) 
+Brasileiro.
 
 ### Exemplo:
 
@@ -130,8 +182,8 @@ O tipo ZipCode representa um número de CEP (Código de Endereçamento Postal) B
 using BrazilianTypes.Types;
 
 // conversão implicita de string para CEP (sem máscara)
-ZipCode cep = "12345678"; 
-ZipCode cep = "12345-678";
+ZipCode cep = "12345678";  // 12345678
+ZipCode cep = "12345-678"; // 12345678
 
 // conversão implicita de CEP para string
 string str = cep;  
@@ -139,23 +191,30 @@ string str = cep;
 
 ### Propriedades
 
-- **Mask**: Obtém o CEP formatado com a máscara (#####-###).
+- `Mask`: Obtém o CEP formatado com a máscara (#####-###).
 ```csharp
-ZipCode cep = "12345678";
- string cepMasked = cep.Mask; // Retorna o CEP formatado com a máscara
+ string cepMasked = cep.Mask; // 12345-678
 ```
 
 ### Métodos
 
-- **TryParse**: Tenta converter uma string em um objeto ZipCode.
+- `TryParse`: Tenta converter uma string em um objeto ZipCode.
 
 ```csharp
  bool isValid = ZipCode.TryParse(string value, out ZipCode zipCode)
 ```
 
-## UF
+- `Generate`: Gera um CEP válido.
 
-O tipo Uf representa uma Unidade Federativa do Brasil.
+```csharp 
+ZipCode cep = ZipCode.Generate()
+```
+
+---
+
+## `UF : IType<Uf>`
+
+O tipo `Uf` representa uma Unidade Federativa do Brasil.
 
 ### Exemplo:
 
@@ -171,13 +230,61 @@ string str = uf;
 ```
 ### Métodos
 
-- **TryParse**: Tenta converter uma string em um objeto Uf.
+- `TryParse`: Tenta converter uma string em um objeto Uf.
 
 ```csharp
  bool isValid = Uf.TryParse(string value, out Uf uf)
 ```
+---
 
-<hr>
+## `Phone : IType<Uf>, IMaskedType`
+
+O tipo `Phone` representa um número de telefone brasileiro.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+// conversão implicita de string para UF
+Phone phone = "(51) 99999-8888"; // 51999998888
+
+Phone phone = "51999998888"; // 51999998888
+
+Phone phone = "(51) 3333-4444"; // 5133334444
+Phone phone = "5133334444"; // 5133334444
+
+// conversão implicita de UF para string
+string str = phone;  
+```
+
+### Propriedades
+
+- `Mask`: Obtém o Telefone formatado com a máscara ((##) #####-###).
+```csharp
+ string mobile = phone.Mask; // (51) 99999-8888
+ string landline = phone.Mask; // (51) 3333-4444
+```
+
+- `IsMobile`: Obtém um valor que indica se o telefone é móvel.
+```csharp
+ bool isMobile = phone.IsMobile; // true
+```
+
+- `Ddd`: Obtém o DDD do telefone.
+```csharp
+ string ddd = phone.Ddd; // 51
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto Phone.
+
+```csharp
+ bool isValid = Phone.TryParse(string value, out Phone phone)
+```
+
+---
 
 # Contribuindo
 
