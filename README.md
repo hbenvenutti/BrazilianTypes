@@ -82,12 +82,12 @@ Para começar a usar a biblioteca BrazilianTypes, siga os passos abaixo:
 
 **Observações**
 - Os tipos são `structs`, portanto, são tipos por valor.
-- Todos os tipos possuim implicit operators para conversão de `string` para o tipo.
+- Todos os tipos possuem `implicit operators` para conversão de `string` para o tipo.
 - Os construtores dos tipos são privados, portanto, não é possível instanciá-los.
-- Ao passar uma string inválida para o tipo, uma exceção será lançada.
-- Para validar se uma string pode ser usada por um tipo, utilize o método `TryParse`.
-- Se você quiser criar tipos personalizados, basta criar uma classe que 
-implemente as interfaces da biblioteca.
+- Ao passar uma `string` inválida para o tipo, uma `exception` será lançada.
+- Para validar se uma `string` pode ser usada por um tipo, utilize o método `TryParse`.
+- Se você quiser criar tipos personalizados, basta criar uma `struct` que 
+implemente as `interfaces` da biblioteca.
 
 > Assim, você pode criar tipos como `Password` e `Username` que respeitam os padrões
  usados na lib. Criando as validações necessárias para a sua necessidade.
