@@ -1,7 +1,15 @@
 namespace BrazilianTypes.Types;
 
+/// <summary>
+/// Representa uma Unidade Federativa (UF) do Brasil.
+/// </summary>
+
 public readonly struct Uf
 {
+    /// <summary>
+    /// Mensagem de erro padrão quando a UF é inválida.
+    /// </summary>
+
     public const string ErrorMessage = "UF is invalid.";
 
     private readonly string _value;
@@ -31,6 +39,13 @@ public readonly struct Uf
 
         return uf;
     }
+
+    /// <summary>
+    /// Tenta analisar uma string e retorna uma instância de Uf correspondente.
+    /// </summary>
+    /// <param name="value">Valor a ser analisado.</param>
+    /// <param name="uf">Instância de Uf, se a análise for bem-sucedida.</param>
+    /// <returns>True se a análise for bem-sucedida, False caso contrário.</returns>
 
     public static bool TryParse(string value, out Uf uf)
     {
