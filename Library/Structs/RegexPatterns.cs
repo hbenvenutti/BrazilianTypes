@@ -70,4 +70,34 @@ internal readonly partial struct RegexPatterns
         .Replace(input: value, replacement: @"$1-$2");
 
     # endregion
+
+    # region ---- phone --------------------------------------------------------
+
+    [GeneratedRegex(pattern: @"^(\d{2})\d{4,5}-\d{4}$")]
+    private static partial Regex PhoneMask();
+
+    /// <summary>
+    /// Aplica a máscara de Telefone ((##) #####-####) a uma string.
+    /// </summary>
+    /// <param name="value">A string contendo o Phone.</param>
+    /// <returns>O Phone formatado com a máscara.</returns>
+    internal static string MaskPhone(string value) => PhoneMask()
+        .Replace(input: value, replacement: @"($1) $2-$3");
+
+    # endregion
+
+    # region ---- cnpj ---------------------------------------------------------
+
+    [GeneratedRegex(pattern: @"^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$")]
+    private static partial Regex CnpjMask();
+
+    /// <summary>
+    /// Aplica a máscara de CNPJ (##.###.###/####-##) a uma string.
+    /// </summary>
+    /// <param name="value">A string contendo o Cnpj.</param>
+    /// <returns>O Cnpj formatado com a máscara.</returns>
+    internal static string MaskCnpj(string value) => CnpjMask()
+        .Replace(input: value, replacement: @"$1.$2.$3/$4-$5");
+
+    # endregion
 }
