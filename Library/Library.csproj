@@ -31,7 +31,6 @@
             As anottations do regex foram removidas, já que o .Net 6 não as suporta.
 
         </PackageReleaseNotes>
-        <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
         <RepositoryType>Github</RepositoryType>
     </PropertyGroup>
 
