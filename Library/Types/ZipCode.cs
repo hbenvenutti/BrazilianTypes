@@ -7,7 +7,7 @@ namespace BrazilianTypes.Types;
 /// Representa um CEP (Código de Endereçamento Postal) brasileiro.
 /// </summary>
 
-public readonly struct ZipCode : IType<ZipCode>, IMaskedType
+public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode>
 {
     # region ---- constants ----------------------------------------------------
 
@@ -86,6 +86,28 @@ public readonly struct ZipCode : IType<ZipCode>, IMaskedType
         if (string.IsNullOrWhiteSpace(value)) return false;
 
         return value.Length == 8;
+    }
+
+    # endregion
+
+    # region ---- generation ---------------------------------------------------
+
+    /// <summary>
+    /// Generates a random ZipCode.
+    /// </summary>
+    /// <returns>A randomly generated ZipCode.</returns>
+    public static ZipCode Generate()
+    {
+        var random = new Random();
+
+        var zipCode = new byte[9];
+
+        for (var i = 0; i < zipCode.Length; i++)
+        {
+            zipCode[i] = (byte)random.Next(10);
+        }
+
+        return string.Join("", zipCode);
     }
 
     # endregion

@@ -8,7 +8,7 @@ namespace BrazilianTypes.Types;
 /// Representa um número de CPF (Cadastro de Pessoas Físicas) válido.
 /// </summary>
 
-public readonly struct Cpf : IType<Cpf>, IMaskedType
+public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 {
     # region ---- constants ----------------------------------------------------
 
