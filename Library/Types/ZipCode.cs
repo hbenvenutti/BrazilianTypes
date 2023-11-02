@@ -1,3 +1,4 @@
+using BrazilianTypes.Interfaces;
 using BrazilianTypes.Structs;
 
 namespace BrazilianTypes.Types;
@@ -6,7 +7,7 @@ namespace BrazilianTypes.Types;
 /// Representa um CEP (Código de Endereçamento Postal) brasileiro.
 /// </summary>
 
-public readonly struct ZipCode
+public readonly struct ZipCode : IType<ZipCode>, IMaskedType
 {
     # region ---- constants ----------------------------------------------------
 
@@ -14,7 +15,7 @@ public readonly struct ZipCode
     /// Mensagem de erro para CEPs inválidos.
     /// </summary>
 
-    public const string ErrorMessage = "Zip code is invalid.";
+    public static string ErrorMessage => "Zip code is invalid.";
 
     # endregion
 

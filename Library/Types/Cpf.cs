@@ -1,4 +1,5 @@
 using BrazilianTypes.Extensions;
+using BrazilianTypes.Interfaces;
 using BrazilianTypes.Structs;
 
 namespace BrazilianTypes.Types;
@@ -7,7 +8,7 @@ namespace BrazilianTypes.Types;
 /// Representa um número de CPF (Cadastro de Pessoas Físicas) válido.
 /// </summary>
 
-public readonly struct Cpf
+public readonly struct Cpf : IType<Cpf>, IMaskedType
 {
     # region ---- constants ----------------------------------------------------
 
@@ -15,7 +16,7 @@ public readonly struct Cpf
     /// Mensagem de erro padrão para CPF inválido.
     /// </summary>
 
-    public const string ErrorMessage = "CPF is invalid.";
+    public static string ErrorMessage => "CPF is invalid.";
 
     private static readonly byte[] Mult1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
     private static readonly byte[] Mult2 = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
