@@ -5,12 +5,13 @@ dados específicos do Brasil, como CPFs.
 
 # Índice
 
-1. [BrazilianTypes](./README.md#braziliantypes)
-2. [Como Usar](./README.md#como-usar)
-3. [Tipos](./README.md#tipos)
-    - [CPF](./README.md#cpf)
-    - [CEP](./README.md#zipcode---cep)
-4. [Contribuindo](./README.md#contribuindo)
+1. [BrazilianTypes](./Nuget.md#braziliantypes)
+2. [Como Usar](./Nuget.md#como-usar)
+3. [Tipos](./Nuget.md#tipos)
+    - [CPF](./Nuget.md#cpf)
+    - [CEP](./Nuget.md#zipcode---cep)
+    - [UF](./Nuget.md#uf)
+4. [Contribuindo](./Nuget.md#contribuindo)
 
 # Como Usar
 
@@ -97,6 +98,30 @@ ZipCode cep = "12345678";
 
 ```csharp
  bool isValid = ZipCode.TryParse(string value, out ZipCode zipCode)
+```
+
+## UF
+
+O tipo Uf representa uma Unidade Federativa do Brasil.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+// conversão implicita de string para UF
+Uf uf = "rs"; // RS
+Uf uf = "RS";
+
+// conversão implicita de UF para string
+string str = uf;  
+```
+### Métodos
+
+- **TryParse**: Tenta converter uma string em um objeto Uf.
+
+```csharp
+ bool isValid = Uf.TryParse(string value, out Uf uf)
 ```
 
 # Contribuindo
