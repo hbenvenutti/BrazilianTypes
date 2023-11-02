@@ -14,7 +14,6 @@
         <Description>Lib with logic for brazilian data types. (CPF, CNPJ, CEP, UF)</Description>
         <PackageReadmeFile>Nuget.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
-        <PackageIcon>logo.png</PackageIcon>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
             v6.1.0.2
@@ -29,16 +28,18 @@
             interfaces com métodos estáticos.
             
             As anottations do regex foram removidas, já que o .Net 6 não as suporta.
-
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
+        <PackageIcon>logo.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="../LICENSE" Pack="true" PackagePath=""/>
-        <None Remove="Types\Cpf.cs~" />
-        <None Update="logo.png">
+        <None Include="../Nuget.md" Pack="true" PackagePath=""/>
+        <None Include="..\logo.png">
           <Pack>True</Pack>
+          <PackagePath></PackagePath>
+          <Link>logo.png</Link>
         </None>
     </ItemGroup>
 
