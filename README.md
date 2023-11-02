@@ -284,6 +284,12 @@ string str = phone;
  bool isValid = Phone.TryParse(string value, out Phone phone)
 ```
 
+- `FromSplit`: Cria um objeto Phone a partir de um DDD e um número de telefone.
+
+```csharp
+ Phone phone = Phone.FromSplit(string ddd, string number)
+```
+
 ---
 
 # Contribuindo

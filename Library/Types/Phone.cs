@@ -103,6 +103,19 @@ public readonly struct Phone : IType<Phone>, IMaskedType
 
     # endregion
 
+    # region ---- factory ------------------------------------------------------
+
+    /// <summary>
+    /// Creates a <see cref="Phone"/> object from separate DDD and number strings.
+    /// </summary>
+    /// <param name="ddd">The area code (DDD).</param>
+    /// <param name="number">The phone number.</param>
+    /// <returns>A <see cref="Phone"/> object.</returns>
+    public static Phone FromSplit(string ddd, string number) =>
+        Parse($"{ddd}{number}");
+
+    # endregion
+
     # region ---- operators ----------------------------------------------------
 
     public static implicit operator Phone(string value) => Parse(value);
