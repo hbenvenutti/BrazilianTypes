@@ -375,6 +375,11 @@ string str = phone;
  string ddd = phone.Ddd; // 51
 ```
 
+- `Number`: Obtém o número sem o DDD do telefone.
+```csharp
+ string number = phone.Number; // 999998888
+```
+
 ### Métodos
 
 - `TryParse`: Tenta converter uma string em um objeto Phone.

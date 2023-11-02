@@ -17,12 +17,16 @@
         <PackageIcon>logo.png</PackageIcon>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
-            v7.1.0.2
+            v7.1.0.3
+
+            - Added Phone number without DDD.
+
+            ---------------------------------
 
             7 -> .NET 7.0
             1 -> Major Version
             0 -> Minor Version
-            2 -> Patch Version
+            3 -> Patch Version
 
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
