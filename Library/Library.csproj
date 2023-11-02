@@ -7,7 +7,7 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.2</Version>
+        <Version>7.1.0.2</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
@@ -16,19 +16,14 @@
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageIcon>logo.png</PackageIcon>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
-        <PackageReleaseNotes>v1.0.2
-Alterações na documentação.
-
-v1.0.1
-Correções na documentação.
-
-v1.0.0
-Tipos implementados:
-- CPF
-- CNPJ
-- CEP
-- UF
-- Phone
+        <PackageReleaseNotes>
+            v7.1.0.2
+            
+            7 -> .NET 7.0
+            1 -> Major Version
+            0 -> Minor Version
+            2 -> Patch Version
+            
         </PackageReleaseNotes>
         <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
         <RepositoryType>Github</RepositoryType>
@@ -36,10 +31,13 @@ Tipos implementados:
 
     <ItemGroup>
         <None Include="../LICENSE" Pack="true" PackagePath=""/>
-        <None Remove="Types\Cpf.cs~" />
-        <None Update="logo.png">
+        <None Include="../Nuget.md" Pack="true" PackagePath=""/>
+        <None Include="..\logo.png">
           <Pack>True</Pack>
+          <PackagePath></PackagePath>
+          <Link>logo.png</Link>
         </None>
+
     </ItemGroup>
 
 </Project>
