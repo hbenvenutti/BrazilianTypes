@@ -28,16 +28,17 @@ Tipos implementados:
 - CNPJ
 - CEP
 - UF
-- Phone</PackageReleaseNotes>
+- Phone
+        </PackageReleaseNotes>
+        <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
+        <RepositoryType>Github</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="../LICENSE" Pack="true" PackagePath=""/>
-        <None Include="../Nuget.md" Pack="true" PackagePath=""/>
         <None Remove="Types\Cpf.cs~" />
         <None Update="logo.png">
           <Pack>True</Pack>
-          <PackagePath></PackagePath>
         </None>
     </ItemGroup>
 

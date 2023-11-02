@@ -56,19 +56,19 @@ dados específicos do Brasil, como CPFs.
 
 # Índice
 
-1. [BrazilianTypes](./README.md#braziliantypes)
-2. [Como Usar](./README.md#como-usar)
-3. [Interfaces](./README.md#interfaces)
-   - [IType](./README.md#itypet)
-   - [IMaskedType](./README.md#imaskedtype)
-   - [IGenerable](./README.md#igenerablet)
-4. [Tipos](./README.md#tipos)
-    - [CPF](./README.md#cpf--itypecpf-imaskedtype-igenerablecpf)
-    - [CNPJ](./README.md#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
-    - [CEP](./README.md#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
-    - [UF](./README.md#uf--itypeuf)
-    - [Phone](./README.md#phone--itypeuf-imaskedtype)
-5. [Contribuindo](./README.md#contribuindo)
+1. [BrazilianTypes](#braziliantypes)
+2. [Como Usar](#como-usar)
+3. [Interfaces](#interfaces)
+   - [IType](#itypet)
+   - [IMaskedType](#imaskedtype)
+   - [IGenerable](#igenerablet)
+4. [Tipos](#tipos)
+    - [CPF](#cpf--itypecpf-imaskedtype-igenerablecpf)
+    - [CNPJ](#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
+    - [CEP](#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
+    - [UF](#uf--itypeuf)
+    - [Phone](#phone--itypephone-imaskedtype)
+5. [Contribuindo](#contribuindo)
 
 ---
 

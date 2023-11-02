@@ -7,19 +7,19 @@ dados específicos do Brasil, como CPFs.
 
 # Índice
 
-1. [BrazilianTypes](./README.md#braziliantypes)
-2. [Como Usar](./README.md#como-usar)
-3. [Interfaces](./Nuget.md#interfaces)
-   - [IType](./Nuget.md#itypet)
-   - [IMaskedType](./Nuget.md#imaskedtype)
-   - [IGenerable](./Nuget.md#igenerablet)
-4. [Tipos](./Nuget.md#tipos)
-   - [CPF](./Nuget.md#cpf--itypecpf-imaskedtype-igenerablecpf)
-   - [CNPJ](./Nuget.md#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
-   - [CEP](./Nuget.md#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
-   - [UF](./Nuget.md#uf--itypeuf)
-   - [Phone](./Nuget.md#phone--itypeuf-imaskedtype)
-5. [Contribuindo](./Nuget.md#contribuindo)
+1. [BrazilianTypes](#braziliantypes)
+2. [Como Usar](#como-usar)
+3. [Interfaces](#interfaces)
+   - [IType](#itypet)
+   - [IMaskedType](#imaskedtype)
+   - [IGenerable](#igenerablet)
+4. [Tipos](#tipos)
+   - [CPF](#cpf--itypecpf-imaskedtype-igenerablecpf)
+   - [CNPJ](#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
+   - [CEP](#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
+   - [UF](#uf--itypeuf)
+   - [Phone](#phone--itypephone-imaskedtype)
+5. [Contribuindo](#contribuindo)
 
 ---
 
