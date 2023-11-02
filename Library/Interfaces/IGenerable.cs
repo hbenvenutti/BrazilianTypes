@@ -4,7 +4,7 @@ namespace BrazilianTypes.Interfaces;
 /// Represents a generic type with generation capabilities.
 /// </summary>
 /// <typeparam name="T">The type to be generated.</typeparam>
-public interface IGenerable<out T>
+public interface IGenerable<out T> where T : struct
 {
     /// <summary>
     /// Generates an instance of the specified type.

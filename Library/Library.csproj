@@ -7,7 +7,7 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>7.1.0.2</Version>
+        <Version>7.1.0.3</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
@@ -18,12 +18,12 @@
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
             v7.1.0.2
-            
+
             7 -> .NET 7.0
             1 -> Major Version
             0 -> Minor Version
             2 -> Patch Version
-            
+
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
     </PropertyGroup>
