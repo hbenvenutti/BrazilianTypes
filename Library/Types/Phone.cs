@@ -6,14 +6,14 @@ namespace BrazilianTypes.Types;
 /// <summary>
 /// Represents a Brazilian phone number.
 /// </summary>
-public readonly struct Phone : IType<Phone>, IMaskedType
+public readonly struct Phone : IMaskedType
 {
     # region ---- properties ---------------------------------------------------
 
     /// <summary>
     /// Gets the error message associated with invalid phone numbers.
     /// </summary>
-    public static string ErrorMessage => "Invalid phone number";
+    public const string ErrorMessage = "Invalid phone number";
 
     /// <summary>
     /// Gets the phone number with a masking pattern applied.

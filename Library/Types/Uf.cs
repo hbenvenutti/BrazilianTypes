@@ -1,18 +1,16 @@
-using BrazilianTypes.Interfaces;
-
 namespace BrazilianTypes.Types;
 
 /// <summary>
 /// Representa uma Unidade Federativa (UF) do Brasil.
 /// </summary>
 
-public readonly struct Uf : IType<Uf>
+public readonly struct Uf
 {
     /// <summary>
     /// Mensagem de erro padrão quando a UF é inválida.
     /// </summary>
 
-    public static string ErrorMessage => "UF is invalid.";
+    public const string ErrorMessage = "UF is invalid.";
 
     private readonly string _value;
 

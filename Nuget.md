@@ -10,15 +10,13 @@ dados específicos do Brasil, como CPFs.
 1. [BrazilianTypes](#braziliantypes)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
-   - [IType](#itypet)
    - [IMaskedType](#imaskedtype)
-   - [IGenerable](#igenerablet)
 4. [Tipos](#tipos)
-   - [CPF](#cpf--itypecpf-imaskedtype-igenerablecpf)
-   - [CNPJ](#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
-   - [CEP](#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
-   - [UF](#uf--itypeuf)
-   - [Phone](#phone--itypephone-imaskedtype)
+   - [CPF](#cpf--imaskedtype)
+   - [CNPJ](#cnpj--imaskedtype)
+   - [CEP](#zipcode--imaskedtype)
+   - [UF](#uf)
+   - [Phone](#phone--imaskedtype)
 5. [Contribuindo](#contribuindo)
 
 ---
@@ -37,11 +35,6 @@ Para começar a usar a biblioteca BrazilianTypes, siga os passos abaixo:
 - Os construtores dos tipos são privados, portanto, não é possível instanciá-los.
 - Ao passar uma `string` inválida para o tipo, uma `exception` será lançada.
 - Para validar se uma `string` pode ser usada por um tipo, utilize o método `TryParse`.
-- Se você quiser criar tipos personalizados, basta criar uma `struct` que
-  implemente as `interfaces` da biblioteca.
-
-> Assim, você pode criar tipos como `Password` e `Username` que respeitam os padrões
-usados na lib. Criando as validações necessárias para a sua necessidade.
 
 Exemplo:
 
@@ -75,29 +68,11 @@ Exemplo:
         Password = password;
      }
  }
- 
-readonly struct Password : IType<Password>
-{
-    <...> // resto do código   
-}
 ```
 
 ---
 
 # Interfaces
-
-## `IType<T>`
-
-A interface `IType<T>` define um tipo genérico com capacidades de parse.
-
-```csharp
-public interface IType<T>
-{
-    static abstract string ErrorMessage { get; }
-
-    static abstract bool TryParse(string value, out T type);
-}
-```
 
 ## `IMaskedType`
 
@@ -110,24 +85,11 @@ public interface IMaskedType
 }
 
 ```
-
-## `IGenerable<T>`
-
-A interface `IGenerable<T>` define um tipo que pode ser gerado aleatoriamente.
-
-```csharp
-public interface IGenerable<out T>
-{
-    static abstract T Generate();
-}
-
-```
-
 ---
 
 # Tipos
 
-## `Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>`
+## `Cpf : IMaskedType`
 
 O tipo `Cpf` representa um número de CPF (Cadastro de Pessoas Físicas) válido.
 
@@ -174,7 +136,7 @@ Cpf cpf = Cpf.Generate()
 
 ---
 
-## `Cnpj : IType<Cnpj>, IMaskedType, IGenerable<Cnpj>`
+## `Cnpj : IMaskedType`
 
 O tipo `Cnpj` representa um número de CNPJ (Cadastro Nacional de Pessoa Jurídica)
 
@@ -221,7 +183,7 @@ Cnpj cnpj = Cnpj.Generate()
 
 ---
 
-## `ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode>`
+## `ZipCode : IMaskedType`
 
 O tipo `ZipCode` representa um número de CEP (Código de Endereçamento Postal)
 Brasileiro.
@@ -262,7 +224,7 @@ ZipCode cep = ZipCode.Generate()
 
 ---
 
-## `UF : IType<Uf>`
+## `UF`
 
 O tipo `Uf` representa uma Unidade Federativa do Brasil.
 
@@ -287,7 +249,7 @@ string str = uf;
 ```
 ---
 
-## `Phone : IType<Phone>, IMaskedType`
+## `Phone : IMaskedType`
 
 O tipo `Phone` representa um número de telefone brasileiro.
 

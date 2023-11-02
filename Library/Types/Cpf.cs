@@ -8,7 +8,7 @@ namespace BrazilianTypes.Types;
 /// Representa um número de CPF (Cadastro de Pessoas Físicas) válido.
 /// </summary>
 
-public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
+public readonly struct Cpf : IMaskedType
 {
     # region ---- constants ----------------------------------------------------
 
@@ -16,7 +16,7 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
     /// Mensagem de erro padrão para CPF inválido.
     /// </summary>
 
-    public static string ErrorMessage => "CPF is invalid.";
+    public const string ErrorMessage = "CPF is invalid.";
 
     private static readonly byte[] Mult1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
     private static readonly byte[] Mult2 = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };

@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.2</Version>
+        <Version>6.1.0.2</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
@@ -16,19 +16,20 @@
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageIcon>logo.png</PackageIcon>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
-        <PackageReleaseNotes>v1.0.2
-Alterações na documentação.
+        <PackageReleaseNotes>
+            v6.1.0.2
+            6 -> Versão do .NET
+            1 -> Versão da lib
+            0 -> Feature
+            2 -> Bugfix, Documentação, etc
 
-v1.0.1
-Correções na documentação.
+            A lib foi pensada com o .Net 7 em mente. Essa versão foi adaptada para o .Net 6.
+            
+            Foram removidas as interfaces IType e Generable, já que o .Net 6 não suporta
+            interfaces com métodos estáticos.
+            
+            As anottations do regex foram removidas, já que o .Net 6 não as suporta.
 
-v1.0.0
-Tipos implementados:
-- CPF
-- CNPJ
-- CEP
-- UF
-- Phone
         </PackageReleaseNotes>
         <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
         <RepositoryType>Github</RepositoryType>

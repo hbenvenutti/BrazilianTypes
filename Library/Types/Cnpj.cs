@@ -7,14 +7,14 @@ namespace BrazilianTypes.Types;
 /// <summary>
 /// Represents a Brazilian CNPJ (Cadastro Nacional da Pessoa Jurídica) number.
 /// </summary>
-public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
+public readonly struct Cnpj : IMaskedType
 {
     # region ---- properties ---------------------------------------------------
 
     /// <summary>
     /// Gets the error message associated with invalid CNPJ numbers.
     /// </summary>
-    public static string ErrorMessage => "Invalid CNPJ";
+    public const string ErrorMessage = "Invalid CNPJ";
 
     /// <summary>
     /// Gets the CNPJ with a masking pattern applied.
