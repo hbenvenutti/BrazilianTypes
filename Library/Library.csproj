@@ -25,7 +25,6 @@
             2 -> Patch Version
             
         </PackageReleaseNotes>
-        <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
         <RepositoryType>Github</RepositoryType>
     </PropertyGroup>
 
