@@ -12,13 +12,13 @@
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
         <Description>Lib with logic for brazilian data types. (CPF, CNPJ, CEP, UF)</Description>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReadmeFile>Nuget.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="../LICENSE" Pack="true" PackagePath=""/>
-        <None Include="../README.md" Pack="true" PackagePath=""/>
+        <None Include="../Nuget.md" Pack="true" PackagePath=""/>
         <None Remove="Types\Cpf.cs~" />
     </ItemGroup>
 
