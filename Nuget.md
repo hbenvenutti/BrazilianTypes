@@ -236,7 +236,7 @@ string str = uf;
 ```
 ---
 
-## `Phone : IType<Uf>, IMaskedType`
+## `Phone : IType<Phone>, IMaskedType`
 
 O tipo `Phone` representa um número de telefone brasileiro.
 
