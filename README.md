@@ -64,6 +64,7 @@ dados específicos do Brasil, como CPFs.
    - [IGenerable](./README.md#igenerablet)
 4. [Tipos](./README.md#tipos)
     - [CPF](./README.md#cpf--itypecpf-imaskedtype-igenerablecpf)
+    - [CNPJ](./README.md#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
     - [CEP](./README.md#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
     - [UF](./README.md#uf--itypeuf)
     - [Phone](./README.md#phone--itypeuf-imaskedtype)
@@ -167,6 +168,53 @@ bool isValid = Cpf.TryParse(string value, out Cpf cpf)
 
 ```csharp 
 Cpf cpf = Cpf.Generate()
+```
+
+---
+
+## `Cnpj : IType<Cnpj>, IMaskedType, IGenerable<Cnpj>`
+
+O tipo `Cnpj` representa um número de CNPJ (Cadastro Nacional de Pessoa Jurídica)
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+// conversão implicita de string para CPF (sem máscara)
+Cnpj cnpj = "12345678000101; 
+Cnpj cnpj = "12.345.678/0001-01"; // 12345678000101; 
+
+// conversão implicita de CNPJ para string
+string str = cnpj;  // 12345678000101; 
+```
+
+### Propriedades
+
+- `Mask`: Obtém o CNPJ formatado com a máscara (##.###.###/####-##).
+
+```csharp 
+string mask = cnpj.Mask; // "12.345.678/0001-01"
+```
+
+- `Digits`: Obtém os dígitos do CNPJ.
+
+```csharp 
+string digits = cnpj.Digits; // 01
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto Cnpj.
+
+```csharp 
+bool isValid = Cpf.TryParse(string value, out Cnpj cnpj)
+```
+
+- `Generate`: Gera um número de CNPJ válido.
+
+```csharp 
+Cnpj cnpj = Cnpj.Generate()
 ```
 
 ---

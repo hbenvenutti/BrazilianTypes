@@ -119,7 +119,7 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
         return cpf.EndsWith(
             value: GenerateDigits(cpf[..9]),
-            StringComparison.InvariantCulture
+            StringComparison.Ordinal
         );
     }
 
@@ -156,19 +156,9 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
     private static string GenerateDigits(string cpf)
     {
-        var sum = Sum(cpf, Mult1);
+        var digit1 = GetRest(Sum(cpf, Mult1));
 
-        var rest = GetRest(sum);
-
-        var digit1 = rest;
-
-        cpf += rest;
-
-        sum = Sum(cpf, Mult2);
-
-        rest = GetRest(sum);
-
-        var digit2 = rest;
+        var digit2 = GetRest(Sum(cpf + digit1, Mult2));
 
         return $"{digit1}{digit2}";
     }
