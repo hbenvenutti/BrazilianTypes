@@ -21,6 +21,11 @@ public readonly struct Phone : IMaskedType
     public string Mask => RegexPatterns.MaskPhone(_value);
 
     /// <summary>
+    /// Gets the phone number without area code.
+    /// </summary>
+    public string Number => _value[2..];
+
+    /// <summary>
     /// Gets the area code (DDD) of the phone number.
     /// </summary>
     public string Ddd => _value[..2];
