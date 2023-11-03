@@ -114,7 +114,18 @@ public readonly struct ZipCode : IMaskedType
 
     # region ---- operators ----------------------------------------------------
 
+    /// <summary>
+    /// Converts a string into a <see cref="ZipCode"/> object.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator ZipCode(string value) => Parse(value);
+
+    /// <summary>
+    /// Converts a <see cref="ZipCode"/> object into a string.
+    /// </summary>
+    /// <param name="zipCode"></param>
+    /// <returns></returns>
     public static implicit operator string(ZipCode zipCode) => zipCode._value;
 
     # endregion
