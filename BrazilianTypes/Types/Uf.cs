@@ -51,14 +51,13 @@ public readonly struct Uf : IType<Uf>
 
     public static bool TryParse(string value, out Uf uf)
     {
+        uf = default;
+
+        if (string.IsNullOrWhiteSpace(value)) { return false;}
+
         value = value.ToUpper();
 
-        if (!IsValid(value))
-        {
-            uf = default;
-
-            return false;
-        }
+        if (!IsValid(value)) { return false; }
 
         uf = new Uf(value);
 
@@ -71,8 +70,7 @@ public readonly struct Uf : IType<Uf>
 
     private static bool IsValid(string value)
     {
-        if (value.Length != 2)
-            return false;
+        if (value.Length != 2) { return false; }
 
         return Enum.TryParse(value, out State _);
     }
