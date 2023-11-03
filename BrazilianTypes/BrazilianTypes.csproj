@@ -17,10 +17,11 @@
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
             v6.1.1.0
-            - Added Test Coverage
-            - Fixed CPF Mask
-            - Fixed Cpf Digits
-            - Fixed CNPJ Mask
+            - Added Test Coverage;
+            - Fixed CPF Mask;
+            - Fixed Cpf Digits;
+            - Fixed CNPJ Mask;
+            - Fixed ZipCode Generation.
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
         <PackageIcon>logo.png</PackageIcon>
@@ -28,7 +29,7 @@
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
       <Optimize>true</Optimize>
-      <DocumentationFile>bin\Debug\net6.0\Library.xml</DocumentationFile>
+      <DocumentationFile>bin\Debug\net6.0\BrazilianTypes.xml</DocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
