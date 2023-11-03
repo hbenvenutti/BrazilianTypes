@@ -100,7 +100,7 @@ public readonly struct ZipCode : IMaskedType
     {
         var random = new Random();
 
-        var zipCode = new byte[9];
+        var zipCode = new byte[8];
 
         for (var i = 0; i < zipCode.Length; i++)
         {
