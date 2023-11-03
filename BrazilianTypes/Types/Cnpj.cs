@@ -92,8 +92,6 @@ public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
     {
         if (cnpj.Length != 14) { return false; }
 
-        if (!cnpj.IsNumeric()) { return false; }
-
         if (cnpj.HasAllCharsEqual()) { return false;}
 
         return cnpj.EndsWith(
@@ -166,7 +164,18 @@ public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
 
     # region ---- operators ----------------------------------------------------
 
+    /// <summary>
+    /// Converts a string to a <see cref="Cnpj"/>.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator Cnpj(string value) => Parse(value);
+
+    /// <summary>
+    /// Converts a <see cref="Cnpj"/> to a string.
+    /// </summary>
+    /// <param name="cnpj"></param>
+    /// <returns></returns>
     public static implicit operator string(Cnpj cnpj) => cnpj._value;
 
     # endregion
