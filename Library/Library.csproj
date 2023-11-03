@@ -32,6 +32,14 @@
         <RepositoryType>Github</RepositoryType>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\net7.0\Library.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\net7.0\Library.xml</DocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
         <None Include="../LICENSE" Pack="true" PackagePath=""/>
         <None Include="../Nuget.md" Pack="true" PackagePath=""/>
