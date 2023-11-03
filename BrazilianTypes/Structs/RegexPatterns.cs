@@ -26,7 +26,7 @@ internal readonly struct RegexPatterns
     # region ---- cep ----------------------------------------------------------
 
     private static readonly Regex ZipCodeMaskRegex =
-        new Regex(@"^(\d{5})-(\d{3})$");
+        new Regex(@"^(\d{5})(\d{3})$");
     internal static string MaskZipCode(string value) => ZipCodeMaskRegex
         .Replace(value, @"$1-$2");
 
