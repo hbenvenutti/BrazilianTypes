@@ -166,7 +166,18 @@ public readonly struct Cnpj : IMaskedType
 
     # region ---- operators ----------------------------------------------------
 
+    /// <summary>
+    /// Converts a string into a <see cref="Cnpj"/> object.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator Cnpj(string value) => Parse(value);
+
+    /// <summary>
+    /// Converts a <see cref="Cnpj"/> object into a string.
+    /// </summary>
+    /// <param name="cnpj"></param>
+    /// <returns></returns>
     public static implicit operator string(Cnpj cnpj) => cnpj._value;
 
     # endregion
