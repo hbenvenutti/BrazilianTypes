@@ -37,7 +37,7 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
     /// Obtém os dígitos do CPF.
     /// </summary>
 
-    public string Digits => _value[10..];
+    public string Digits => _value[9..];
 
     # endregion
 
@@ -111,8 +111,6 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
     private static bool IsValid(string cpf )
     {
-        if (!cpf.IsNumeric()) { return false; }
-
         if (cpf.Length != 11) { return false; }
 
         if (cpf.HasAllCharsEqual()) { return false; }
@@ -188,8 +186,18 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
     # region ---- implicit operators -------------------------------------------
 
+    /// <summary>
+    /// Converts a string into a <see cref="Cpf"/>.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator Cpf(string value) => Parse(value);
 
+    /// <summary>
+    /// Converts a <see cref="Cpf"/> into a string.
+    /// </summary>
+    /// <param name="cpf"></param>
+    /// <returns></returns>
     public static implicit operator string(Cpf cpf) => cpf._value;
 
     #endregion
