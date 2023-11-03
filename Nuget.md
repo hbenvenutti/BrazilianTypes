@@ -1,13 +1,15 @@
-# BrazilianTypes
+# BrazilianTypes 7.1
 
 A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com
 dados específicos do Brasil, como CPFs.
+
+.NET 7
 
 ---
 
 # Índice
 
-1. [BrazilianTypes](#braziliantypes)
+1. [BrazilianTypes](#braziliantypes-71)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IType](#itypet)

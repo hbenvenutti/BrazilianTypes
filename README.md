@@ -1,4 +1,10 @@
-# BrazilianTypes
+# BrazilianTypes 7.1
+
+---
+
+.NET 7
+
+---
 
 A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com 
 dados específicos do Brasil, como CPFs.
@@ -19,9 +25,6 @@ dados específicos do Brasil, como CPFs.
 		src="https://img.shields.io/github/contributors/hbenvenutti/BrazilianTypes?style=plastic"
 		title="Contributors"
 	>
-</div>
-
-<div>
 	<img
 		alt="GitHub commit activity (feature)"
 		src="https://img.shields.io/github/commit-activity/w/hbenvenutti/BrazilianTypes/feature?style=plastic"
@@ -39,14 +42,6 @@ dados específicos do Brasil, como CPFs.
 		src="https://img.shields.io/github/watchers/hbenvenutti/BrazilianTypes?style=plastic"
 	>
 	<img
-		alt="GitHub pull requests"
-		src="https://img.shields.io/github/issues-pr/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-	<img
-		alt="GitHub closed pull requests"
-		src="https://img.shields.io/github/issues-pr-closed/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-	<img
 		alt="GitHub code size in bytes"
 		src="https://img.shields.io/github/languages/code-size/hbenvenutti/BrazilianTypes?style=plastic"
 	>
@@ -56,7 +51,7 @@ dados específicos do Brasil, como CPFs.
 
 # Índice
 
-1. [BrazilianTypes](#braziliantypes)
+1. [BrazilianTypes](#braziliantypes-71)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IType](#itypet)

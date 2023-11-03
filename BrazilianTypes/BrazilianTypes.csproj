@@ -9,7 +9,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Version>7.1.0.4</Version>
         <Authors>Huam Benvenutti</Authors>
-        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes</RepositoryUrl>
+        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet7</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
         <Description>Lib with logic for brazilian data types. (CPF, CNPJ, CEP, UF)</Description>
         <PackageReadmeFile>Nuget.md</PackageReadmeFile>
@@ -49,6 +49,7 @@
           <PackagePath></PackagePath>
           <Link>logo.png</Link>
         </None>
+        <None Remove="Types\Cpf.cs~" />
 
     </ItemGroup>
 
