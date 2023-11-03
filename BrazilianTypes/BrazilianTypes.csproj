@@ -9,25 +9,16 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Version>6.1.0.3</Version>
         <Authors>Huam Benvenutti</Authors>
-        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes</RepositoryUrl>
+        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet6</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
         <Description>Lib with logic for brazilian data types. (CPF, CNPJ, CEP, UF)</Description>
         <PackageReadmeFile>Nuget.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
-            v6.1.0.2
-            6 -> Versão do .NET
-            1 -> Versão da lib
-            0 -> Feature
-            2 -> Bugfix, Documentação, etc
-
-            A lib foi pensada com o .Net 7 em mente. Essa versão foi adaptada para o .Net 6.
+            v6.1.0.3
             
-            Foram removidas as interfaces IType e Generable, já que o .Net 6 não suporta
-            interfaces com métodos estáticos.
-            
-            As anottations do regex foram removidas, já que o .Net 6 não as suporta.
+            - Added Phone property: "Number".
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
         <PackageIcon>logo.png</PackageIcon>
@@ -39,7 +30,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DocumentationFile>bin\Release\net6.0\Library.xml</DocumentationFile>
+      <DocumentationFile>bin\Release\net6.0\BrazilianTypes.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

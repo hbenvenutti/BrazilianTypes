@@ -1,4 +1,6 @@
-# BrazilianTypes
+# BrazilianTypes 6.1
+
+## .NET 6
 
 A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com
 dados específicos do Brasil, como CPFs.
