@@ -44,7 +44,7 @@ internal readonly struct RegexPatterns
     # region ---- cnpj ---------------------------------------------------------
 
     private static readonly Regex CnpjMaskRegex =
-        new Regex(@"^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$");
+        new Regex(@"^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$");
     internal static string MaskCnpj(string value) => CnpjMaskRegex
         .Replace(value, @"$1.$2.$3/$4-$5");
 
