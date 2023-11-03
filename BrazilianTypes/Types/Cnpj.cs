@@ -92,8 +92,6 @@ public readonly struct Cnpj : IMaskedType
     {
         if (cnpj.Length != 14) { return false; }
 
-        if (!cnpj.IsNumeric()) { return false; }
-
         if (cnpj.HasAllCharsEqual()) { return false;}
 
         return cnpj.EndsWith(

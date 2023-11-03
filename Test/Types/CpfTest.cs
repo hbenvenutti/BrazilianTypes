@@ -37,10 +37,8 @@ public class CpfTest
     [InlineData("001.815.60-20")]
     [InlineData("001.815.6001-20")]
     [InlineData("001.815.60a-20")]
-    public void ShouldThrow(string cpf)
-    {
-        Assert.Throws<ArgumentException>(() => { Cpf _ = cpf; });
-    }
+    public void ShouldThrow(string cpf) => Assert.
+        Throws<ArgumentException>(() => { Cpf _ = cpf; });
 
     # endregion
 
