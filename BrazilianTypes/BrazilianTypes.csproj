@@ -16,9 +16,11 @@
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
-            v6.1.0.3
-            
-            - Added Phone property: "Number".
+            v6.1.1.0
+            - Added Test Coverage
+            - Fixed CPF Mask
+            - Fixed Cpf Digits
+            - Fixed CNPJ Mask
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
         <PackageIcon>logo.png</PackageIcon>
