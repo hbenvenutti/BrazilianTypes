@@ -49,12 +49,14 @@ public readonly struct Uf
 
     public static bool TryParse(string value, out Uf uf)
     {
+        uf = default;
+
+        if (string.IsNullOrWhiteSpace(value)) { return false; }
+
         value = value.ToUpper();
 
         if (!IsValid(value))
         {
-            uf = default;
-
             return false;
         }
 
@@ -69,17 +71,27 @@ public readonly struct Uf
 
     private static bool IsValid(string value)
     {
-        if (value.Length != 2)
-            return false;
+        if (value.Length != 2) { return false; }
 
-        return Enum.TryParse(value, out State _);
+        return Enum.TryParse<State>(value, out _);
     }
 
     # endregion
 
     # region ---- operators ----------------------------------------------------
 
+    /// <summary>
+    /// Converts a string into a <see cref="Uf"/> object.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator Uf(string value) => Parse(value);
+
+    /// <summary>
+    /// Converts a <see cref="Uf"/> object into a string.
+    /// </summary>
+    /// <param name="uf"></param>
+    /// <returns></returns>
     public static implicit operator string(Uf uf) => uf._value;
 
     # endregion
