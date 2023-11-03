@@ -52,4 +52,22 @@ public class CpfTest
             actual: parsedCpf.Mask
         );
     }
+
+    [Theory]
+    [InlineData("001.815.600-20")]
+    [InlineData("682.366.550-59")]
+    [InlineData("688.401.110-69")]
+    [InlineData("605.040.520-47")]
+    [InlineData("749.527.540-57")]
+    public void ShouldGetDigits(string cpf)
+    {
+        Cpf parsedCpf = cpf;
+
+        var digits = cpf.Split('-')[1];
+
+        Assert.Equal(
+            expected: digits,
+            actual: parsedCpf.Digits
+        );
+    }
 }

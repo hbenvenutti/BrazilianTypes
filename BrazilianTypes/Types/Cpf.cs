@@ -37,7 +37,7 @@ public readonly struct Cpf : IMaskedType
     /// Obtém os dígitos do CPF.
     /// </summary>
 
-    public string Digits => _value[10..];
+    public string Digits => _value[9..];
 
     # endregion
 
