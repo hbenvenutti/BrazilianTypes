@@ -16,9 +16,10 @@ internal readonly struct RegexPatterns
     # region ---- cpf ----------------------------------------------------------
 
     private static readonly Regex CpfMaskRegex =
-        new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$");
+        new (pattern: @"^(\d{3})(\d{3})(\d{3})(\d{2})$");
+
     internal static string MaskCpf(string value) => CpfMaskRegex
-        .Replace(value, @"$1.$2.$3-$4");
+        .Replace(input: value, replacement: @"$1.$2.$3-$4");
 
     # endregion
 

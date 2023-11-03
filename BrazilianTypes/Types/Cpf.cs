@@ -111,8 +111,6 @@ public readonly struct Cpf : IMaskedType
 
     private static bool IsValid(string cpf )
     {
-        if (!cpf.IsNumeric()) { return false; }
-
         if (cpf.Length != 11) { return false; }
 
         if (cpf.HasAllCharsEqual()) { return false; }
@@ -188,8 +186,18 @@ public readonly struct Cpf : IMaskedType
 
     # region ---- implicit operators -------------------------------------------
 
+    /// <summary>
+    /// Converts a string into a <see cref="Cpf"/> object.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator Cpf(string value) => Parse(value);
 
+    /// <summary>
+    /// Converts a <see cref="Cpf"/> object into a string.
+    /// </summary>
+    /// <param name="cpf"></param>
+    /// <returns></returns>
     public static implicit operator string(Cpf cpf) => cpf._value;
 
     #endregion
