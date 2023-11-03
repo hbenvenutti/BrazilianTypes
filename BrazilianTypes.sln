@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{451C346F-8B2E-4D59-AE65-2178E2488CDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrazilianTypes", "BrazilianTypes\BrazilianTypes.csproj", "{451C346F-8B2E-4D59-AE65-2178E2488CDC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "itens", "itens", "{D40A9A62-1E91-4EDD-9921-8E4314AE7035}"
 	ProjectSection(SolutionItems) = preProject
