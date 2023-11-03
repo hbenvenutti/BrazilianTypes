@@ -123,7 +123,18 @@ public readonly struct Phone : IType<Phone>, IMaskedType
 
     # region ---- operators ----------------------------------------------------
 
+    /// <summary>
+    /// Converts a string into a <see cref="Phone"/> object.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator Phone(string value) => Parse(value);
+
+    /// <summary>
+    /// Converts a <see cref="Phone"/> object into a string.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
     public static implicit operator string(Phone type) => type._value;
 
     # endregion
