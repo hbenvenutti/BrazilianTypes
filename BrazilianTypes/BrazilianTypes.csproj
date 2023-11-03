@@ -21,7 +21,11 @@
             - Fixed CPF Mask;
             - Fixed Cpf Digits;
             - Fixed CNPJ Mask;
-            - Fixed ZipCode Generation.
+            - Fixed ZipCode Generation;
+            - Fixed ZipCode Mask;
+            - Fixed Phone Mask.
+            
+            All types are now 100% test covered.
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
         <PackageIcon>logo.png</PackageIcon>
