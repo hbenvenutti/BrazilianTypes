@@ -6,6 +6,8 @@ namespace Test.Types;
 [ExcludeFromCodeCoverage]
 public class CpfTest
 {
+    # region ---- create -------------------------------------------------------
+
     [Theory]
     [InlineData("001.815.600-20")]
     [InlineData("00181560020")]
@@ -23,6 +25,10 @@ public class CpfTest
         );
     }
 
+    # endregion
+
+    # region ---- throw --------------------------------------------------------
+
     [Theory]
     [InlineData("001.815.601-20")]
     [InlineData("aaa.bbb.ccc-dd")]
@@ -33,8 +39,12 @@ public class CpfTest
     [InlineData("001.815.60a-20")]
     public void ShouldThrow(string cpf)
     {
-        Assert.Throws<ArgumentException>(() => { Cpf parsedCpf = cpf; });
+        Assert.Throws<ArgumentException>(() => { Cpf _ = cpf; });
     }
+
+    # endregion
+
+    # region ---- mask ---------------------------------------------------------
 
     [Theory]
     [InlineData("001.815.600-20")]
@@ -53,6 +63,10 @@ public class CpfTest
         );
     }
 
+    # endregion
+
+    # region ---- digits -------------------------------------------------------
+
     [Theory]
     [InlineData("001.815.600-20")]
     [InlineData("682.366.550-59")]
@@ -70,4 +84,21 @@ public class CpfTest
             actual: parsedCpf.Digits
         );
     }
+
+    # endregion
+
+    # region ---- generation ---------------------------------------------------
+
+    [Fact]
+    public void ShouldGenerateCpf()
+    {
+        for (var i = 0; i < 100; i++)
+        {
+            var cpf = Cpf.Generate();
+
+            Assert.True(Cpf.TryParse(cpf, out _));
+        }
+    }
+
+    # endregion
 }
