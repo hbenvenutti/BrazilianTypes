@@ -79,7 +79,18 @@ public readonly struct Uf : IType<Uf>
 
     # region ---- operators ----------------------------------------------------
 
+    /// <summary>
+    /// Converts a string into a <see cref="Uf"/> instance.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator Uf(string value) => Parse(value);
+
+    /// <summary>
+    /// Converts a <see cref="Uf"/> instance into a string.
+    /// </summary>
+    /// <param name="uf"></param>
+    /// <returns></returns>
     public static implicit operator string(Uf uf) => uf._value;
 
     # endregion
