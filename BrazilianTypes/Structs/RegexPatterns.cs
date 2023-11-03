@@ -35,7 +35,7 @@ internal readonly struct RegexPatterns
     # region ---- phone --------------------------------------------------------
 
     private static readonly Regex PhoneMaskRegex =
-        new Regex(@"^(\d{2})\d{4,5}-\d{4}$");
+        new Regex(@"^(\d{2})(\d{4,5})(\d{4})$");
     internal static string MaskPhone(string value) => PhoneMaskRegex
         .Replace(value, @"($1) $2-$3");
 
