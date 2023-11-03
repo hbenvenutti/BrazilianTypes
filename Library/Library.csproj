@@ -7,7 +7,7 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>6.1.0.2</Version>
+        <Version>6.1.0.3</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
@@ -31,6 +31,15 @@
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
         <PackageIcon>logo.png</PackageIcon>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <Optimize>true</Optimize>
+      <DocumentationFile>bin\Debug\net6.0\Library.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\net6.0\Library.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
