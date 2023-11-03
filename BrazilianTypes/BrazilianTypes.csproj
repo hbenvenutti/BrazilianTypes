@@ -7,7 +7,7 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>7.1.0.3</Version>
+        <Version>7.1.0.4</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
@@ -17,27 +17,28 @@
         <PackageIcon>logo.png</PackageIcon>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
-            v7.1.0.3
+            v7.1.0.4
 
-            - Added Phone number without DDD.
+            - Added Test Coverage;
+            - Fixed CPF Mask;
+            - Fixed Cpf Digits;
+            - Fixed CNPJ Mask;
+            - Fixed ZipCode Generation;
+            - Fixed ZipCode Mask;
+            - Fixed Phone Mask.
 
-            ---------------------------------
-
-            7 -> .NET 7.0
-            1 -> Major Version
-            0 -> Minor Version
-            3 -> Patch Version
+            All types are now 100% test covered.
 
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DocumentationFile>bin\Debug\net7.0\Library.xml</DocumentationFile>
+      <DocumentationFile>bin\Debug\net7.0\BrazilianTypes.xml</DocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DocumentationFile>bin\Release\net7.0\Library.xml</DocumentationFile>
+      <DocumentationFile>bin\Release\net7.0\BrazilianTypes.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
