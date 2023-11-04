@@ -22,6 +22,7 @@
             - Added Text Type;
             - Added Name Type;
             - Added Interface ISpecification;
+            - Added Email.
 
             All types are 100% test covered.
 
@@ -46,7 +47,6 @@
             <PackagePath></PackagePath>
           <Link>logo.png</Link>
         </None>
-        <None Remove="Types\Cpf.cs~" />
 
     </ItemGroup>
 

@@ -22,6 +22,7 @@ dados específicos do Brasil, como CPFs.
    - [Phone](#phone--itypephone-imaskedtype)
    - [Text](#text--itypetext)
    - [Name](#name--itypename)
+   - [Email](#email--itypeemail)
 5. [Contribuindo](#contribuindo)
 
 ---
@@ -435,6 +436,48 @@ Name name = null; // throw exception
 ```
 
 ---
+
+## `Email : IType<Email>`
+
+O tipo `Email` representa um endereço de e-mail.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Email email = "foobar@gmail.com"; // "foobar@gmail.com"
+
+Email email = "FOOBAR@GMAIL.COM"; // "foobar@gmail.com"
+Email email = " FOOBAR@GMAIL.COM "; // "foobar@gmail.com"
+
+Email email = "foobar@gmail"; // "throw exception"
+Email email = ".foobar@gmail.com"; // "throw exception"
+Email email = "foobar.gmail"; // "throw exception"
+Email email = "foobar@gmail."; // "throw exception"
+Email email = "foobar@gmail..com"; // "throw exception"
+Email email = "foobar.gmail.com"; // "throw exception"
+Email email = "foobar@.gmail.com"; // "throw exception"
+Email email = "@gmail.com"; // "throw exception"
+Email email = "@"; // "throw exception"
+Email email = "foobar"; // "throw exception"
+Email email = "foobar@"; // "throw exception"
+
+Email email = " "; // throw exception
+Email email = ""; // throw exception
+Email email = null; // throw exception
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Email`.
+
+```csharp
+ bool isValid = Email.TryParse(string value, out Email email)
+```
+
+---
+
 # Contribuindo
 
 Se encontrar algum problema ou tiver sugestões de melhorias, sinta-se à vontade
