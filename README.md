@@ -60,6 +60,7 @@ dados específicos do Brasil, como CPFs.
    - [UF](#uf--itypeuf)
    - [Phone](#phone--itypephone-imaskedtype)
    - [Text](#text--itypetext)
+   - [Name](#name--itypename)
 5. [Contribuindo](#contribuindo)
 
 ---
@@ -407,12 +408,46 @@ Text text = ""; // throw exception
 
 Text text = null; // throw exception
 ```
+
 ### Métodos
 
 - `TryParse`: Tenta converter uma string em um objeto `Text`.
 
 ```csharp
- bool isValid = Phone.TryParse(string value, out Text text)
+ bool isValid = Text.TryParse(string value, out Text text)
+```
+
+---
+
+## `Name : IType<Name>`
+
+O tipo `Name` representa um nome que contém apenas letras e não pode ser nulo 
+ou vazio.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Name name = "John Doe"; // "John Doe"
+
+Name name = " John Doe "; // "John Doe"
+
+Name name = "João"; // João
+Name name = "Júlia"; // Júlia
+
+Name name = " "; // throw exception
+
+Name name = ""; // throw exception
+
+Name name = null; // throw exception
+```
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Name`.
+
+```csharp
+ bool isValid = Name.TryParse(string value, out Name name)
 ```
 
 ---

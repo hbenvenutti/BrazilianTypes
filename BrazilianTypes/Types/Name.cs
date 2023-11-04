@@ -81,7 +81,7 @@ public readonly struct Name : IType<Name>
 
         value = RegexPatterns.RemoveWhiteSpace(value);
 
-        if (value.Length is < 2 or > 50) { return false; }
+        if (value.Length < 2) { return false; }
 
         if (!value.IsAlphabetic()) { return false; }
 
