@@ -7,39 +7,50 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.2</Version>
+        <Version>7.1.0.4</Version>
         <Authors>Huam Benvenutti</Authors>
-        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes</RepositoryUrl>
+        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet7</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
         <Description>Lib with logic for brazilian data types. (CPF, CNPJ, CEP, UF)</Description>
         <PackageReadmeFile>Nuget.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageIcon>logo.png</PackageIcon>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
-        <PackageReleaseNotes>v1.0.2
-Alterações na documentação.
+        <PackageReleaseNotes>
+            v7.1.0.4
 
-v1.0.1
-Correções na documentação.
+            - Added Test Coverage;
+            - Fixed CPF Mask;
+            - Fixed Cpf Digits;
+            - Fixed CNPJ Mask;
+            - Fixed ZipCode Generation;
+            - Fixed ZipCode Mask;
+            - Fixed Phone Mask.
 
-v1.0.0
-Tipos implementados:
-- CPF
-- CNPJ
-- CEP
-- UF
-- Phone
+            All types are now 100% test covered.
+
         </PackageReleaseNotes>
-        <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
         <RepositoryType>Github</RepositoryType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\net7.0\BrazilianTypes.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\net7.0\BrazilianTypes.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
         <None Include="../LICENSE" Pack="true" PackagePath=""/>
-        <None Remove="Types\Cpf.cs~" />
-        <None Update="logo.png">
+        <None Include="../Nuget.md" Pack="true" PackagePath=""/>
+        <None Include="..\logo.png">
           <Pack>True</Pack>
+          <PackagePath></PackagePath>
+          <Link>logo.png</Link>
         </None>
+        <None Remove="Types\Cpf.cs~" />
+
     </ItemGroup>
 
 </Project>

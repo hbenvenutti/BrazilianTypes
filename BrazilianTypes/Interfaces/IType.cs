@@ -4,7 +4,7 @@ namespace BrazilianTypes.Interfaces;
 /// Represents a generic type with parsing capabilities.
 /// </summary>
 /// <typeparam name="T">The type to be represented.</typeparam>
-public interface IType<T>
+public interface IType<T> where T : struct
 {
     /// <summary>
     /// Gets the error message associated with parsing failures.

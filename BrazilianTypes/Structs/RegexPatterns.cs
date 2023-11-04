@@ -36,7 +36,7 @@ internal readonly partial struct RegexPatterns
     /// </summary>
     /// <returns>Instância de Regex para validar CPF.</returns>
 
-    [GeneratedRegex(pattern: @"^\d{3}\.\d{3}\.\d{3}-\d{2}$")]
+    [GeneratedRegex(pattern: @"^(\d{3})(\d{3})(\d{3})(\d{2}$)")]
     private static partial Regex CpfMask();
 
     /// <summary>
@@ -57,7 +57,7 @@ internal readonly partial struct RegexPatterns
     /// </summary>
     /// <returns>Instância de Regex para validar CEP.</returns>
 
-    [GeneratedRegex(pattern: @"^(\d{5})-(\d{3})$")]
+    [GeneratedRegex(pattern: @"^(\d{5})(\d{3})$")]
     private static partial Regex ZipCodeMask();
 
     /// <summary>
@@ -73,7 +73,7 @@ internal readonly partial struct RegexPatterns
 
     # region ---- phone --------------------------------------------------------
 
-    [GeneratedRegex(pattern: @"^(\d{2})\d{4,5}-\d{4}$")]
+    [GeneratedRegex(pattern: @"^(\d{2})(\d{4,5})(\d{4})$")]
     private static partial Regex PhoneMask();
 
     /// <summary>
@@ -88,7 +88,7 @@ internal readonly partial struct RegexPatterns
 
     # region ---- cnpj ---------------------------------------------------------
 
-    [GeneratedRegex(pattern: @"^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$")]
+    [GeneratedRegex(pattern: @"^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$")]
     private static partial Regex CnpjMask();
 
     /// <summary>

@@ -100,7 +100,7 @@ public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode
     {
         var random = new Random();
 
-        var zipCode = new byte[9];
+        var zipCode = new byte[8];
 
         for (var i = 0; i < zipCode.Length; i++)
         {
@@ -114,7 +114,18 @@ public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode
 
     # region ---- operators ----------------------------------------------------
 
+    /// <summary>
+    /// Converts a string to a <see cref="ZipCode"/>.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static implicit operator ZipCode(string value) => Parse(value);
+
+    /// <summary>
+    /// Converts a <see cref="ZipCode"/> to a string.
+    /// </summary>
+    /// <param name="zipCode"></param>
+    /// <returns></returns>
     public static implicit operator string(ZipCode zipCode) => zipCode._value;
 
     # endregion

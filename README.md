@@ -1,4 +1,10 @@
-# BrazilianTypes
+# BrazilianTypes 7.1
+
+---
+
+.NET 7
+
+---
 
 A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com 
 dados específicos do Brasil, como CPFs.
@@ -10,21 +16,18 @@ dados específicos do Brasil, como CPFs.
 		title="Latest Release"
 	/>
 	<img
-		alt="GitHub last commit (feature)"
-		src="https://img.shields.io/github/last-commit/hbenvenutti/BrazilianTypes/feature?label=last%20commit&style=plastic"
-		title="Last Commit on feature branch"
+		alt="GitHub last commit (dotnet7)"
+		src="https://img.shields.io/github/last-commit/hbenvenutti/BrazilianTypes/dotnet7?label=last%20commit&style=plastic"
+		title="Last Commit on dotnet7 branch"
 	/>
 	<img
 		alt="GitHub contributors"
 		src="https://img.shields.io/github/contributors/hbenvenutti/BrazilianTypes?style=plastic"
 		title="Contributors"
 	>
-</div>
-
-<div>
 	<img
-		alt="GitHub commit activity (feature)"
-		src="https://img.shields.io/github/commit-activity/w/hbenvenutti/BrazilianTypes/feature?style=plastic"
+		alt="GitHub commit activity (dotnet7)"
+		src="https://img.shields.io/github/commit-activity/w/hbenvenutti/BrazilianTypes/dotnet7?style=plastic"
 	>
 	<img
 		alt="GitHub forks"
@@ -39,14 +42,6 @@ dados específicos do Brasil, como CPFs.
 		src="https://img.shields.io/github/watchers/hbenvenutti/BrazilianTypes?style=plastic"
 	>
 	<img
-		alt="GitHub pull requests"
-		src="https://img.shields.io/github/issues-pr/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-	<img
-		alt="GitHub closed pull requests"
-		src="https://img.shields.io/github/issues-pr-closed/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-	<img
 		alt="GitHub code size in bytes"
 		src="https://img.shields.io/github/languages/code-size/hbenvenutti/BrazilianTypes?style=plastic"
 	>
@@ -56,7 +51,7 @@ dados específicos do Brasil, como CPFs.
 
 # Índice
 
-1. [BrazilianTypes](#braziliantypes)
+1. [BrazilianTypes](#braziliantypes-71)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IType](#itypet)
@@ -373,6 +368,11 @@ string str = phone;
 - `Ddd`: Obtém o DDD do telefone.
 ```csharp
  string ddd = phone.Ddd; // 51
+```
+
+- `Number`: Obtém o número sem o DDD do telefone.
+```csharp
+ string number = phone.Number; // 999998888
 ```
 
 ### Métodos
