@@ -1,8 +1,6 @@
-# BrazilianTypes 6.1
+# BrazilianTypes 6.1 | .NET 6
 
-## .NET 6
-
-A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com 
+A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com
 dados específicos do Brasil, como CPFs.
 
 <div id="header" >
@@ -47,16 +45,19 @@ dados específicos do Brasil, como CPFs.
 
 # Índice
 
-1. [BrazilianTypes](#braziliantypes)
+1. [BrazilianTypes](#braziliantypes-61--net-6)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IMaskedType](#imaskedtype)
 4. [Tipos](#tipos)
-    - [CPF](#cpf--imaskedtype)
-    - [CNPJ](#cnpj--imaskedtype)
-    - [CEP](#zipcode--imaskedtype)
-    - [UF](#uf)
-    - [Phone](#phone--imaskedtype)
+   - [CPF](#cpf--imaskedtype)
+   - [CNPJ](#cnpj--imaskedtype)
+   - [CEP](#zipcode--imaskedtype)
+   - [UF](#uf)
+   - [Phone](#phone--imaskedtype)
+   - [Text](#text--itypetext)
+   - [Name](#name--itypename)
+   - [Email](#email--itypeemail)
 5. [Contribuindo](#contribuindo)
 
 ---
@@ -225,7 +226,7 @@ Cnpj cnpj = Cnpj.Generate()
 
 ## `ZipCode : IMaskedType`
 
-O tipo `ZipCode` representa um número de CEP (Código de Endereçamento Postal) 
+O tipo `ZipCode` representa um número de CEP (Código de Endereçamento Postal)
 Brasileiro.
 
 ### Exemplo:
@@ -344,7 +345,112 @@ string str = phone;
 
 ---
 
+## `Text : IType<Text>`
+
+O tipo `Text` representa um texto que não pode ser nulo ou vazio.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Text text = "Hello World"; // "Hello World"
+
+Text text = " Hello World "; // "Hello World"
+
+Text text = " "; // throw exception
+
+Text text = ""; // throw exception
+
+Text text = null; // throw exception
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Text`.
+
+```csharp
+ bool isValid = Text.TryParse(string value, out Text text)
+```
+
+---
+
+## `Name : IType<Name>`
+
+O tipo `Name` representa um nome que contém apenas letras e não pode ser nulo
+ou vazio.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Name name = "John Doe"; // "John Doe"
+
+Name name = " John Doe "; // "John Doe"
+
+Name name = "João"; // João
+Name name = "Júlia"; // Júlia
+
+Name name = " "; // throw exception
+
+Name name = ""; // throw exception
+
+Name name = null; // throw exception
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Name`.
+
+```csharp
+ bool isValid = Name.TryParse(string value, out Name name)
+```
+
+---
+
+## `Email : IType<Email>`
+
+O tipo `Email` representa um endereço de e-mail.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Email email = "foobar@gmail.com"; // "foobar@gmail.com"
+
+Email email = "FOOBAR@GMAIL.COM"; // "foobar@gmail.com"
+Email email = " FOOBAR@GMAIL.COM "; // "foobar@gmail.com"
+
+Email email = "foobar@gmail"; // "throw exception"
+Email email = ".foobar@gmail.com"; // "throw exception"
+Email email = "foobar.gmail"; // "throw exception"
+Email email = "foobar@gmail."; // "throw exception"
+Email email = "foobar@gmail..com"; // "throw exception"
+Email email = "foobar.gmail.com"; // "throw exception"
+Email email = "foobar@.gmail.com"; // "throw exception"
+Email email = "@gmail.com"; // "throw exception"
+Email email = "@"; // "throw exception"
+Email email = "foobar"; // "throw exception"
+Email email = "foobar@"; // "throw exception"
+
+Email email = " "; // throw exception
+Email email = ""; // throw exception
+Email email = null; // throw exception
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Email`.
+
+```csharp
+ bool isValid = Email.TryParse(string value, out Email email)
+```
+
+---
+
 # Contribuindo
 
-Se encontrar algum problema ou tiver sugestões de melhorias, sinta-se à vontade 
+Se encontrar algum problema ou tiver sugestões de melhorias, sinta-se à vontade
 para abrir uma issue ou enviar um pull request.
