@@ -25,7 +25,7 @@ public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode
     /// Obtém o valor do CEP com a máscara aplicada (#####-###).
     /// </summary>
 
-    public string Mask => RegexPatterns.MaskZipCode(_value);
+    public string Mask => RegexService.MaskZipCode(_value);
 
     # region ---- constructor --------------------------------------------------
 
@@ -62,7 +62,7 @@ public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode
 
     public static bool TryParse(string value, out ZipCode zipCode)
     {
-        value = RegexPatterns
+        value = RegexService
             .GetOnlyNumbers(value);
 
         if (!IsValid(value))

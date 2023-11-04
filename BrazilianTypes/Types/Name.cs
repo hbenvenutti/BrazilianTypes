@@ -79,7 +79,7 @@ public readonly struct Name : IType<Name>
     {
         if (string.IsNullOrWhiteSpace(value)) { return false; }
 
-        value = RegexPatterns.RemoveWhiteSpace(value);
+        value = RegexService.RemoveWhiteSpace(value);
 
         if (value.Length < 2) { return false; }
 
