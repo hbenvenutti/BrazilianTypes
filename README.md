@@ -17,8 +17,7 @@ dados específicos do Brasil, como CPFs.
 	/>
 	<img
 		alt="GitHub last commit (dotnet7)"
-		src="https://img.shields.io/github/last-commit/hbenvenutti/BrazilianTypes/dotnet7?
-label=last%20commit&style=plastic"
+		src="https://img.shields.io/github/last-commit/hbenvenutti/BrazilianTypes/dotnet7?label=last%20commit&style=plastic"
 		title="Last Commit on dotnet7 branch"
 	/>
 	<img
