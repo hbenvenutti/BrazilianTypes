@@ -16,10 +16,10 @@ public interface IType<T> where T : struct
     /// Attempts to parse a string value into the specified type.
     /// </summary>
     /// <param name="value">The string value to be parsed.</param>
-    /// <param name="type">When this method returns, contains the parsed value
+    /// <param name="parsedValue">When this method returns, contains the parsed value
     /// if successful; otherwise, the default value.</param>
     /// <returns><c>true</c> if parsing was successful; otherwise, <c>false</c>.
     /// </returns>
 
-    static abstract bool TryParse(string value, out T type);
+    static abstract bool TryParse(string value, out T parsedValue);
 }

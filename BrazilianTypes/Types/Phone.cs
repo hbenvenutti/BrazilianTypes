@@ -95,15 +95,13 @@ public readonly struct Phone : IType<Phone>, IMaskedType
 
     private static bool IsValid(string value)
     {
-        switch (value.Length)
+        return value.Length switch
         {
-            case < 10 or > 11:
-            case 10 when value[2] != '3':
-            case 11 when value[2] != '9':
-                return false;
-            default:
-                return true;
-        }
+            < 10 or > 11 => false,
+            10 when value[2] != '3' => false,
+            11 when value[2] != '9' => false,
+            _ => true
+        };
     }
 
     # endregion
