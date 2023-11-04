@@ -12,9 +12,10 @@ dados específicos do Brasil, como CPFs.
 		title="Latest Release"
 	/>
 	<img
-		alt="GitHub last commit (feature)"
-		src="https://img.shields.io/github/last-commit/hbenvenutti/BrazilianTypes/feature?label=last%20commit&style=plastic"
-		title="Last Commit on feature branch"
+		alt="GitHub last commit (dotnet6)"
+		src="https://img.shields.io/github/last-commit/hbenvenutti/BrazilianTypes/dotnet6?
+label=last%20commit&style=plastic"
+		title="Last Commit on dotnet6 branch"
 	/>
 	<img
 		alt="GitHub contributors"
@@ -22,8 +23,8 @@ dados específicos do Brasil, como CPFs.
 		title="Contributors"
 	>
 	<img
-		alt="GitHub commit activity (feature)"
-		src="https://img.shields.io/github/commit-activity/w/hbenvenutti/BrazilianTypes/feature?style=plastic"
+		alt="GitHub commit activity (dotnet6)"
+		src="https://img.shields.io/github/commit-activity/w/hbenvenutti/BrazilianTypes/dotnet6?style=plastic"
 	>
 	<img
 		alt="GitHub forks"
