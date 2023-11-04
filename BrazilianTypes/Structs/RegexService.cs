@@ -6,7 +6,7 @@ namespace BrazilianTypes.Structs;
 /// Classe que contém padrões de expressões regulares.
 /// </summary>
 
-internal readonly partial struct RegexPatterns
+internal readonly partial struct RegexService
 {
     # region ---- remove mask --------------------------------------------------
 

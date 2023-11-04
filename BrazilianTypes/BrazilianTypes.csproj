@@ -21,8 +21,9 @@
 
             - Added Text Type;
             - Added Name Type;
+            - Added Interface ISpecification;
 
-            All types are now 100% test covered.
+            All types are 100% test covered.
 
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
