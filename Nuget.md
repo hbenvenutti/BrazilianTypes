@@ -1,15 +1,13 @@
-# BrazilianTypes 7.1
+# BrazilianTypes 7.1 | .NET 7
 
 A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com
 dados específicos do Brasil, como CPFs.
-
-.NET 7
 
 ---
 
 # Índice
 
-1. [BrazilianTypes](#braziliantypes-71)
+1. [BrazilianTypes](#braziliantypes-71--net-7)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IType](#itypet)
@@ -21,6 +19,7 @@ dados específicos do Brasil, como CPFs.
    - [CEP](#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
    - [UF](#uf--itypeuf)
    - [Phone](#phone--itypephone-imaskedtype)
+   - [Text](#text--itypetext)
 5. [Contribuindo](#contribuindo)
 
 ---
@@ -345,6 +344,35 @@ string str = phone;
 
 ```csharp
  Phone phone = Phone.FromSplit(string ddd, string number)
+```
+
+---
+
+## `Text : IType<Text>`
+
+O tipo `Text` representa um texto que não pode ser nulo ou vazio.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Text text = "Hello World"; // "Hello World"
+
+Text text = " Hello World "; // "Hello World"
+
+Text text = " "; // throw exception
+
+Text text = ""; // throw exception
+
+Text text = null; // throw exception
+```
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Text`.
+
+```csharp
+ bool isValid = Phone.TryParse(string value, out Text text)
 ```
 
 ---
