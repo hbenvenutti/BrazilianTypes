@@ -7,7 +7,7 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>7.1.0.4</Version>
+        <Version>7.1.1.0</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet7</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
@@ -17,15 +17,9 @@
         <PackageIcon>logo.png</PackageIcon>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
-            v7.1.0.4
+            v7.1.1.0
 
-            - Added Test Coverage;
-            - Fixed CPF Mask;
-            - Fixed Cpf Digits;
-            - Fixed CNPJ Mask;
-            - Fixed ZipCode Generation;
-            - Fixed ZipCode Mask;
-            - Fixed Phone Mask.
+            - Added Text Type;
 
             All types are now 100% test covered.
 

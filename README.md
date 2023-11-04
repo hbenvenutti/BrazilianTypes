@@ -1,12 +1,8 @@
-# BrazilianTypes 7.1
+# BrazilianTypes 7.1 | .NET 7
 
 ---
 
-.NET 7
-
----
-
-A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com 
+A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com
 dados específicos do Brasil, como CPFs.
 
 <div id="header" >
@@ -51,18 +47,19 @@ dados específicos do Brasil, como CPFs.
 
 # Índice
 
-1. [BrazilianTypes](#braziliantypes-71)
+1. [BrazilianTypes](#braziliantypes-71--net-7)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IType](#itypet)
    - [IMaskedType](#imaskedtype)
    - [IGenerable](#igenerablet)
 4. [Tipos](#tipos)
-    - [CPF](#cpf--itypecpf-imaskedtype-igenerablecpf)
-    - [CNPJ](#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
-    - [CEP](#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
-    - [UF](#uf--itypeuf)
-    - [Phone](#phone--itypephone-imaskedtype)
+   - [CPF](#cpf--itypecpf-imaskedtype-igenerablecpf)
+   - [CNPJ](#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
+   - [CEP](#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
+   - [UF](#uf--itypeuf)
+   - [Phone](#phone--itypephone-imaskedtype)
+   - [Text](#text--itypetext)
 5. [Contribuindo](#contribuindo)
 
 ---
@@ -81,11 +78,11 @@ Para começar a usar a biblioteca BrazilianTypes, siga os passos abaixo:
 - Os construtores dos tipos são privados, portanto, não é possível instanciá-los.
 - Ao passar uma `string` inválida para o tipo, uma `exception` será lançada.
 - Para validar se uma `string` pode ser usada por um tipo, utilize o método `TryParse`.
-- Se você quiser criar tipos personalizados, basta criar uma `struct` que 
-implemente as `interfaces` da biblioteca.
+- Se você quiser criar tipos personalizados, basta criar uma `struct` que
+  implemente as `interfaces` da biblioteca.
 
 > Assim, você pode criar tipos como `Password` e `Username` que respeitam os padrões
- usados na lib. Criando as validações necessárias para a sua necessidade.
+usados na lib. Criando as validações necessárias para a sua necessidade.
 
 Exemplo:
 
@@ -204,7 +201,7 @@ string digits = cpf.Digits; // 01
 
 ### Métodos
 
-- `TryParse`: Tenta converter uma string em um objeto Cpf.
+- `TryParse`: Tenta converter uma string em um objeto `Cpf`.
 
 ```csharp 
 bool isValid = Cpf.TryParse(string value, out Cpf cpf)
@@ -251,7 +248,7 @@ string digits = cnpj.Digits; // 01
 
 ### Métodos
 
-- `TryParse`: Tenta converter uma string em um objeto Cnpj.
+- `TryParse`: Tenta converter uma string em um objeto `Cnpj`.
 
 ```csharp 
 bool isValid = Cpf.TryParse(string value, out Cnpj cnpj)
@@ -267,7 +264,7 @@ Cnpj cnpj = Cnpj.Generate()
 
 ## `ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode>`
 
-O tipo `ZipCode` representa um número de CEP (Código de Endereçamento Postal) 
+O tipo `ZipCode` representa um número de CEP (Código de Endereçamento Postal)
 Brasileiro.
 
 ### Exemplo:
@@ -292,7 +289,7 @@ string str = cep;
 
 ### Métodos
 
-- `TryParse`: Tenta converter uma string em um objeto ZipCode.
+- `TryParse`: Tenta converter uma string em um objeto `ZipCode`.
 
 ```csharp
  bool isValid = ZipCode.TryParse(string value, out ZipCode zipCode)
@@ -324,7 +321,7 @@ string str = uf;
 ```
 ### Métodos
 
-- `TryParse`: Tenta converter uma string em um objeto Uf.
+- `TryParse`: Tenta converter uma string em um objeto `Uf`.
 
 ```csharp
  bool isValid = Uf.TryParse(string value, out Uf uf)
@@ -377,13 +374,13 @@ string str = phone;
 
 ### Métodos
 
-- `TryParse`: Tenta converter uma string em um objeto Phone.
+- `TryParse`: Tenta converter uma string em um objeto `Phone`.
 
 ```csharp
  bool isValid = Phone.TryParse(string value, out Phone phone)
 ```
 
-- `FromSplit`: Cria um objeto Phone a partir de um DDD e um número de telefone.
+- `FromSplit`: Cria um objeto `Phone` a partir de um DDD e um número de telefone.
 
 ```csharp
  Phone phone = Phone.FromSplit(string ddd, string number)
@@ -391,7 +388,36 @@ string str = phone;
 
 ---
 
+## `Text : IType<Text>`
+
+O tipo `Text` representa um texto que não pode ser nulo ou vazio.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Text text = "Hello World"; // "Hello World"
+
+Text text = " Hello World "; // "Hello World"
+
+Text text = " "; // throw exception
+
+Text text = ""; // throw exception
+
+Text text = null; // throw exception
+```
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Text`.
+
+```csharp
+ bool isValid = Phone.TryParse(string value, out Text text)
+```
+
+---
+
 # Contribuindo
 
-Se encontrar algum problema ou tiver sugestões de melhorias, sinta-se à vontade 
+Se encontrar algum problema ou tiver sugestões de melhorias, sinta-se à vontade
 para abrir uma issue ou enviar um pull request.
