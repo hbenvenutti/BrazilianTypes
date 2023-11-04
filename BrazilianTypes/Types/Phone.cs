@@ -1,5 +1,5 @@
 using BrazilianTypes.Interfaces;
-using BrazilianTypes.Structs;
+using BrazilianTypes.Services;
 
 namespace BrazilianTypes.Types;
 
@@ -18,7 +18,7 @@ public readonly struct Phone : IMaskedType
     /// <summary>
     /// Gets the phone number with a masking pattern applied.
     /// </summary>
-    public string Mask => RegexPatterns.MaskPhone(_value);
+    public string Mask => RegexService.MaskPhone(_value);
 
     /// <summary>
     /// Gets the phone number without area code.
@@ -74,7 +74,7 @@ public readonly struct Phone : IMaskedType
 
     public static bool TryParse(string value, out Phone phone)
     {
-        value = RegexPatterns
+        value = RegexService
             .GetOnlyNumbers(value);
 
         if (!IsValid(value))

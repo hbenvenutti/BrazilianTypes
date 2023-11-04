@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
 
-namespace BrazilianTypes.Structs;
+namespace BrazilianTypes.Services;
 
-internal readonly struct RegexPatterns
+internal readonly struct RegexService
 {
     # region ---- numbers ------------------------------------------------------
 
@@ -47,6 +47,15 @@ internal readonly struct RegexPatterns
         new Regex(@"^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$");
     internal static string MaskCnpj(string value) => CnpjMaskRegex
         .Replace(value, @"$1.$2.$3/$4-$5");
+
+    # endregion
+
+    # region ---- remove white space -------------------------------------------
+
+    private static readonly Regex WhiteSpaceRegex = new Regex(pattern: @"\s+");
+
+    public static string RemoveWhiteSpace(string value) => WhiteSpaceRegex
+        .Replace(input: value, replacement: "");
 
     # endregion
 }

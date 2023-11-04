@@ -7,7 +7,7 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>6.1.0.4</Version>
+        <Version>6.1.1.0</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet6</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
@@ -16,16 +16,14 @@
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
-            v6.1.0.4
-            - Added Test Coverage;
-            - Fixed CPF Mask;
-            - Fixed Cpf Digits;
-            - Fixed CNPJ Mask;
-            - Fixed ZipCode Generation;
-            - Fixed ZipCode Mask;
-            - Fixed Phone Mask.
-            
-            All types are now 100% test covered.
+            v6.1.1.0
+
+            - Added Text Type;
+            - Added Name Type;
+            - Added Interface ISpecification;
+            - Added Email.
+
+            All types are 100% test covered.
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
         <PackageIcon>logo.png</PackageIcon>
@@ -45,7 +43,8 @@
         <None Include="../Nuget.md" Pack="true" PackagePath=""/>
         <None Include="..\logo.png">
           <Pack>True</Pack>
-          <PackagePath></PackagePath>
+          <!--suppress CheckTagEmptyBody -->
+            <PackagePath></PackagePath>
           <Link>logo.png</Link>
         </None>
     </ItemGroup>
