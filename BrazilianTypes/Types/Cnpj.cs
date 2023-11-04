@@ -1,6 +1,6 @@
 using BrazilianTypes.Extensions;
 using BrazilianTypes.Interfaces;
-using BrazilianTypes.Structs;
+using BrazilianTypes.Services;
 
 namespace BrazilianTypes.Types;
 

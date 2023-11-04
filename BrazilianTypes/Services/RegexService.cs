@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace BrazilianTypes.Structs;
+namespace BrazilianTypes.Services;
 
 /// <summary>
 /// Classe que contém padrões de expressões regulares.
