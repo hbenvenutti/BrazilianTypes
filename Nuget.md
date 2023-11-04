@@ -13,6 +13,7 @@ dados específicos do Brasil, como CPFs.
    - [IType](#itypet)
    - [IMaskedType](#imaskedtype)
    - [IGenerable](#igenerablet)
+   - [ISpecification](#ispecificationtcode-ttype)
 4. [Tipos](#tipos)
    - [CPF](#cpf--itypecpf-imaskedtype-igenerablecpf)
    - [CNPJ](#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
@@ -124,6 +125,29 @@ public interface IGenerable<out T>
 }
 
 ```
+
+## `ISpecification<TCode, TType>`
+
+A interface `ISpecification` define uma especifacação para validação de dados.
+
+```csharp
+public interface ISpecification<TCode, in TType>
+    where TCode : struct, IType<TType>
+    where TType : struct
+{
+    TCode Code { get; protected set; }
+
+    ICollection<string> ErrorMessages { get; init; }
+
+    bool IsSatisfiedBy(TType data);
+}
+```
+
+- `Code`: Código de erro personalizado da sua aplicação.
+- `ErrorMessages`: Mensagens de erro personalizadas da sua aplicação.
+- `IsSatisfiedBy`: Método que valida os dados.
+- `TCode`: Tipo do código de erro. Deve ser um tipo de valor.
+- `TType`: Tipo do dado a ser validado. Deve ser um tipo de valor.
 
 ---
 
