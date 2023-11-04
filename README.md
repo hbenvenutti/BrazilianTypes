@@ -49,6 +49,7 @@ dados específicos do Brasil, como CPFs.
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IMaskedType](#imaskedtype)
+   - [ISpecification<TCode, TType>](#ispecificationtcode-ttype)
 4. [Tipos](#tipos)
    - [CPF](#cpf--imaskedtype)
    - [CNPJ](#cnpj--imaskedtype)
@@ -126,6 +127,32 @@ public interface IMaskedType
 }
 
 ```
+
+---
+
+## `ISpecification<TCode, TType>`
+
+A interface `ISpecification` define uma especifacação para validação de dados.
+
+```csharp
+public interface ISpecification<TCode, in TType>
+    where TCode : struct
+    where TType : struct
+{
+    TCode Code { get; protected set; }
+
+    ICollection<string> ErrorMessages { get; init; }
+
+    bool IsSatisfiedBy(TType data);
+}
+```
+
+- `Code`: Código de erro personalizado da sua aplicação.
+- `ErrorMessages`: Mensagens de erro personalizadas da sua aplicação.
+- `IsSatisfiedBy`: Método que valida os dados.
+- `TCode`: Tipo do código de erro. Deve ser um tipo de valor.
+- `TType`: Tipo do dado a ser validado. Deve ser um tipo de valor.
+
 ---
 
 # Tipos
