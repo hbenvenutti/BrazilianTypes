@@ -55,9 +55,9 @@ dados específicos do Brasil, como CPFs.
    - [CEP](#zipcode--imaskedtype)
    - [UF](#uf)
    - [Phone](#phone--imaskedtype)
-   - [Text](#text--itypetext)
-   - [Name](#name--itypename)
-   - [Email](#email--itypeemail)
+   - [Text](#text)
+   - [Name](#name)
+   - [Email](#email)
 5. [Contribuindo](#contribuindo)
 
 ---
@@ -345,7 +345,7 @@ string str = phone;
 
 ---
 
-## `Text : IType<Text>`
+## `Text`
 
 O tipo `Text` representa um texto que não pode ser nulo ou vazio.
 
@@ -375,7 +375,7 @@ Text text = null; // throw exception
 
 ---
 
-## `Name : IType<Name>`
+## `Name`
 
 O tipo `Name` representa um nome que contém apenas letras e não pode ser nulo
 ou vazio.
@@ -409,7 +409,7 @@ Name name = null; // throw exception
 
 ---
 
-## `Email : IType<Email>`
+## `Email`
 
 O tipo `Email` representa um endereço de e-mail.
 
