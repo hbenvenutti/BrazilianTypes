@@ -42,7 +42,8 @@
         <None Include="../Nuget.md" Pack="true" PackagePath=""/>
         <None Include="..\logo.png">
           <Pack>True</Pack>
-          <PackagePath></PackagePath>
+          <!--suppress CheckTagEmptyBody -->
+            <PackagePath></PackagePath>
           <Link>logo.png</Link>
         </None>
         <None Remove="Types\Cpf.cs~" />
