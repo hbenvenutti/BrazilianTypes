@@ -126,15 +126,15 @@ public readonly struct Phone : IType<Phone>, IMaskedType
     /// <summary>
     /// Converts a string into a <see cref="Phone"/> object.
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">The string representing the phone number.</param>
+    /// <returns>The resulting <see cref="Phone"/></returns>
     public static implicit operator Phone(string value) => Parse(value);
 
     /// <summary>
     /// Converts a <see cref="Phone"/> object into a string.
     /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
+    /// <param name="type">The <see cref="Phone"/> to be converted</param>
+    /// <returns>The resulting string</returns>
     public static implicit operator string(Phone type) => type._value;
 
     # endregion

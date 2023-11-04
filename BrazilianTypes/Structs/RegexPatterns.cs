@@ -100,4 +100,14 @@ internal readonly partial struct RegexPatterns
         .Replace(input: value, replacement: @"$1.$2.$3/$4-$5");
 
     # endregion
+
+    # region ---- remove white space -------------------------------------------
+
+    [GeneratedRegex(pattern: @"\s+")]
+    private static partial Regex WhiteSpace();
+
+    internal static string RemoveWhiteSpace(string value) => WhiteSpace()
+        .Replace(input: value, replacement: "");
+
+    # endregion
 }

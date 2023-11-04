@@ -30,7 +30,7 @@ public readonly struct Text : IType<Text>
     # region ---- parse --------------------------------------------------------
 
     /// <summary>
-    /// Tries to parse a string value into a Text.
+    /// Tries to parse a string value into a <see cref="Text"/>.
     /// </summary>
     /// <param name="value">String to be converted</param>
     /// <param name="text">The resulting <see cref="Text"/> object if the
@@ -80,15 +80,15 @@ public readonly struct Text : IType<Text>
     /// <summary>
     /// Converts a string value into a <see cref="Text"/>.
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">The string to be converted.</param>
+    /// <returns>The resulting <see cref="Text"/>.</returns>
     public static implicit operator Text(string value) => Parse(value);
 
     /// <summary>
     /// Converts a <see cref="Text"/> into a string value.
     /// </summary>
-    /// <param name="text"></param>
-    /// <returns></returns>
+    /// <param name="text">The <see cref="Text"/> to be converted.</param>
+    /// <returns>The resulting string.</returns>
     public static implicit operator string(Text text) => text._value;
 
     # endregion
