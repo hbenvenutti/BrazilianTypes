@@ -1,3 +1,4 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Interfaces;
 using BrazilianTypes.Services;
 
@@ -54,8 +55,9 @@ public readonly struct Phone : IType<Phone>, IMaskedType
     {
         if (!TryParse(value, out var phone))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
