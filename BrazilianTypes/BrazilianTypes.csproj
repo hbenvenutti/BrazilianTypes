@@ -7,7 +7,7 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>7.1.1.0</Version>
+        <Version>7.1.1.1</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet7</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
@@ -17,12 +17,11 @@
         <PackageIcon>logo.png</PackageIcon>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
-            v7.1.1.0
+            v7.1.1.1
 
-            - Added Text Type;
-            - Added Name Type;
-            - Added Interface ISpecification;
-            - Added Email.
+            - Fix: Cpf does not generate all equals anymore.
+            - Doc: Corrected some typos.
+            - Feature: Implemented an exception to improve debugging when type throws.
 
             All types are 100% test covered.
 

@@ -1,7 +1,9 @@
 namespace BrazilianTypes.Exceptions;
 
-internal class InvalidValueException : ArgumentException
+/// <inheritdoc />
+public class InvalidValueException : ArgumentException
 {
+    /// <inheritdoc />
     public InvalidValueException(
         string message,
         string value,

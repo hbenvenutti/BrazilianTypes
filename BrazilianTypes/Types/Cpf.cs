@@ -1,3 +1,4 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Extensions;
 using BrazilianTypes.Interfaces;
 using BrazilianTypes.Services;
@@ -66,8 +67,9 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
     {
         if (!TryParse(value, out var cpf))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
@@ -145,7 +147,11 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
         var digits = GenerateDigits(str);
 
-        return $"{str}{digits}";
+        var result = $"{str}{digits}";
+
+        if (str.HasAllCharsEqual()) { return Generate(); }
+
+        return result;
     }
 
     # endregion
