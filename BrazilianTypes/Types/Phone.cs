@@ -1,3 +1,4 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Interfaces;
 using BrazilianTypes.Services;
 
@@ -13,7 +14,7 @@ public readonly struct Phone : IMaskedType
     /// <summary>
     /// Gets the error message associated with invalid phone numbers.
     /// </summary>
-    public const string ErrorMessage = "Invalid phone number";
+    public static string ErrorMessage => "Invalid phone number";
 
     /// <summary>
     /// Gets the phone number with a masking pattern applied.
@@ -54,8 +55,9 @@ public readonly struct Phone : IMaskedType
     {
         if (!TryParse(value, out var phone))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
@@ -95,15 +97,13 @@ public readonly struct Phone : IMaskedType
 
     private static bool IsValid(string value)
     {
-        switch (value.Length)
+        return value.Length switch
         {
-            case < 10 or > 11:
-            case 10 when value[2] != '3':
-            case 11 when value[2] != '9':
-                return false;
-            default:
-                return true;
-        }
+            < 10 or > 11 => false,
+            10 when value[2] != '3' => false,
+            11 when value[2] != '9' => false,
+            _ => true
+        };
     }
 
     # endregion
@@ -126,15 +126,15 @@ public readonly struct Phone : IMaskedType
     /// <summary>
     /// Converts a string into a <see cref="Phone"/> object.
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">The string representing the phone number.</param>
+    /// <returns>The resulting <see cref="Phone"/></returns>
     public static implicit operator Phone(string value) => Parse(value);
 
     /// <summary>
     /// Converts a <see cref="Phone"/> object into a string.
     /// </summary>
-    /// <param name="type"></param>
-    /// <returns></returns>
+    /// <param name="type">The <see cref="Phone"/> to be converted</param>
+    /// <returns>The resulting string</returns>
     public static implicit operator string(Phone type) => type._value;
 
     # endregion

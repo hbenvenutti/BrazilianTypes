@@ -1,5 +1,5 @@
 using System.Net.Mail;
-using BrazilianTypes.Interfaces;
+using BrazilianTypes.Exceptions;
 
 namespace BrazilianTypes.Types;
 
@@ -10,7 +10,9 @@ public readonly struct Email
 {
     # region ---- properties ---------------------------------------------------
 
-    /// <inheritdoc />
+    /// <summary>
+    /// Gets the error message associated with invalid email addresses.
+    /// </summary>
     public static string ErrorMessage => "Invalid email address";
 
     private readonly string _value;
@@ -28,7 +30,13 @@ public readonly struct Email
 
     # region ---- parse --------------------------------------------------------
 
-    /// <inheritdoc />
+    /// <summary>
+    /// Tries to parse a string value into a <see cref="Email"/>.
+    /// </summary>
+    /// <param name="value">String to be converted</param>
+    /// <param name="parsedValue">The resulting <see cref="Email"/>.</param>
+    /// <returns>True if the conversion is successful; otherwise, False.
+    /// </returns>
     public static bool TryParse(string value, out Email parsedValue)
     {
         parsedValue = default;
@@ -47,8 +55,9 @@ public readonly struct Email
     {
         if (!TryParse(value, out var email))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }

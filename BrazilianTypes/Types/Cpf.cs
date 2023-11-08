@@ -1,3 +1,4 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Extensions;
 using BrazilianTypes.Interfaces;
 using BrazilianTypes.Services;
@@ -16,7 +17,7 @@ public readonly struct Cpf : IMaskedType
     /// Mensagem de erro padrão para CPF inválido.
     /// </summary>
 
-    public const string ErrorMessage = "CPF is invalid.";
+    public static string ErrorMessage => "CPF is invalid.";
 
     private static readonly byte[] Mult1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
     private static readonly byte[] Mult2 = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -66,8 +67,9 @@ public readonly struct Cpf : IMaskedType
     {
         if (!TryParse(value, out var cpf))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
@@ -145,7 +147,11 @@ public readonly struct Cpf : IMaskedType
 
         var digits = GenerateDigits(str);
 
-        return $"{str}{digits}";
+        var result = $"{str}{digits}";
+
+        return result.HasAllCharsEqual()
+            ? Generate()
+            : result;
     }
 
     # endregion
@@ -187,14 +193,14 @@ public readonly struct Cpf : IMaskedType
     # region ---- implicit operators -------------------------------------------
 
     /// <summary>
-    /// Converts a string into a <see cref="Cpf"/> object.
+    /// Converts a string into a <see cref="Cpf"/>.
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
     public static implicit operator Cpf(string value) => Parse(value);
 
     /// <summary>
-    /// Converts a <see cref="Cpf"/> object into a string.
+    /// Converts a <see cref="Cpf"/> into a string.
     /// </summary>
     /// <param name="cpf"></param>
     /// <returns></returns>

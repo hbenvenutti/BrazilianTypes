@@ -1,3 +1,5 @@
+using BrazilianTypes.Exceptions;
+
 namespace BrazilianTypes.Types;
 
 /// <summary>
@@ -10,7 +12,7 @@ public readonly struct Uf
     /// Mensagem de erro padrão quando a UF é inválida.
     /// </summary>
 
-    public const string ErrorMessage = "UF is invalid.";
+    public static string ErrorMessage => "UF is invalid.";
 
     private readonly string _value;
 
@@ -31,8 +33,9 @@ public readonly struct Uf
     {
         if (!TryParse(value, out var uf))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
@@ -51,14 +54,11 @@ public readonly struct Uf
     {
         uf = default;
 
-        if (string.IsNullOrWhiteSpace(value)) { return false; }
+        if (string.IsNullOrWhiteSpace(value)) { return false;}
 
         value = value.ToUpper();
 
-        if (!IsValid(value))
-        {
-            return false;
-        }
+        if (!IsValid(value)) { return false; }
 
         uf = new Uf(value);
 
@@ -73,7 +73,7 @@ public readonly struct Uf
     {
         if (value.Length != 2) { return false; }
 
-        return Enum.TryParse<State>(value, out _);
+        return Enum.TryParse(value, out State _);
     }
 
     # endregion
@@ -81,14 +81,14 @@ public readonly struct Uf
     # region ---- operators ----------------------------------------------------
 
     /// <summary>
-    /// Converts a string into a <see cref="Uf"/> object.
+    /// Converts a string into a <see cref="Uf"/> instance.
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
     public static implicit operator Uf(string value) => Parse(value);
 
     /// <summary>
-    /// Converts a <see cref="Uf"/> object into a string.
+    /// Converts a <see cref="Uf"/> instance into a string.
     /// </summary>
     /// <param name="uf"></param>
     /// <returns></returns>

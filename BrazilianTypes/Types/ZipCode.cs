@@ -1,10 +1,11 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Interfaces;
 using BrazilianTypes.Services;
 
 namespace BrazilianTypes.Types;
 
 /// <summary>
-/// Representa um CEP (Código de Endereçamento Postal) brasileiro.
+/// Represents a brazilian CEP (Código de Endereçamento Postal).
 /// </summary>
 
 public readonly struct ZipCode : IMaskedType
@@ -15,14 +16,14 @@ public readonly struct ZipCode : IMaskedType
     /// Mensagem de erro para CEPs inválidos.
     /// </summary>
 
-    public const string ErrorMessage = "Zip code is invalid.";
+    public static string ErrorMessage => "Zip code is invalid.";
 
     # endregion
 
     private readonly string _value;
 
     /// <summary>
-    /// Obtém o valor do CEP com a máscara aplicada (#####-###).
+    /// Gets the zip code with a masking pattern applied.
     /// </summary>
 
     public string Mask => RegexService.MaskZipCode(_value);
@@ -42,8 +43,9 @@ public readonly struct ZipCode : IMaskedType
     {
         if (!TryParse(value, out var zipCode))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
@@ -115,17 +117,18 @@ public readonly struct ZipCode : IMaskedType
     # region ---- operators ----------------------------------------------------
 
     /// <summary>
-    /// Converts a string into a <see cref="ZipCode"/> object.
+    /// Converts a string to a <see cref="ZipCode"/>.
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">The string representing the <see cref="ZipCode"/>.
+    /// </param>
+    /// <returns>The resulting <see cref="ZipCode"/>.</returns>
     public static implicit operator ZipCode(string value) => Parse(value);
 
     /// <summary>
-    /// Converts a <see cref="ZipCode"/> object into a string.
+    /// Converts a <see cref="ZipCode"/> to a string.
     /// </summary>
-    /// <param name="zipCode"></param>
-    /// <returns></returns>
+    /// <param name="zipCode">The <see cref="ZipCode"/> to be converted.</param>
+    /// <returns>The resulting string.</returns>
     public static implicit operator string(ZipCode zipCode) => zipCode._value;
 
     # endregion

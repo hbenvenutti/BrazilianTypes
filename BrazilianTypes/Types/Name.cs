@@ -1,3 +1,4 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Extensions;
 using BrazilianTypes.Services;
 
@@ -40,8 +41,9 @@ public readonly struct Name
     {
         if (!TryParse(value, out var name))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }

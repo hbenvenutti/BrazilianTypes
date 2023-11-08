@@ -1,3 +1,4 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Extensions;
 using BrazilianTypes.Interfaces;
 using BrazilianTypes.Services;
@@ -14,7 +15,7 @@ public readonly struct Cnpj : IMaskedType
     /// <summary>
     /// Gets the error message associated with invalid CNPJ numbers.
     /// </summary>
-    public const string ErrorMessage = "Invalid CNPJ";
+    public static string ErrorMessage => "Invalid CNPJ";
 
     /// <summary>
     /// Gets the CNPJ with a masking pattern applied.
@@ -51,8 +52,9 @@ public readonly struct Cnpj : IMaskedType
     {
         if (!TryParse(value, out var cnpj))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
@@ -157,7 +159,11 @@ public readonly struct Cnpj : IMaskedType
 
         var digits = GenerateDigits(str);
 
-        return $"{str}{digits}";
+        var result = $"{str}{digits}";
+
+        return result.HasAllCharsEqual()
+            ? Generate()
+            : result;
     }
 
     # endregion
@@ -165,14 +171,14 @@ public readonly struct Cnpj : IMaskedType
     # region ---- operators ----------------------------------------------------
 
     /// <summary>
-    /// Converts a string into a <see cref="Cnpj"/> object.
+    /// Converts a string to a <see cref="Cnpj"/>.
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
     public static implicit operator Cnpj(string value) => Parse(value);
 
     /// <summary>
-    /// Converts a <see cref="Cnpj"/> object into a string.
+    /// Converts a <see cref="Cnpj"/> to a string.
     /// </summary>
     /// <param name="cnpj"></param>
     /// <returns></returns>

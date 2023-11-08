@@ -7,7 +7,7 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>6.1.1.0</Version>
+        <Version>6.1.1.1</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet6</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
