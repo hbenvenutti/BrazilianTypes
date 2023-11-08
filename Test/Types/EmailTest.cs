@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Types;
 
 namespace Test.Types;
@@ -53,6 +54,6 @@ public class EmailTest
     [InlineData(null)]
     public void ShouldThrowAnExceptionWhenEmailIsInvalid(string email)
     {
-        Assert.Throws<ArgumentException>(() => { Email _ = email;});
+        Assert.Throws<InvalidValueException>(() => { Email _ = email;});
     }
 }
