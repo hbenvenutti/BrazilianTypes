@@ -240,7 +240,7 @@ string digits = cnpj.Digits; // 01
 - `TryParse`: Tenta converter uma string em um objeto Cnpj.
 
 ```csharp 
-bool isValid = Cpf.TryParse(string value, out Cnpj cnpj)
+bool isValid = Cnpj.TryParse(string value, out Cnpj cnpj)
 ```
 
 - `Generate`: Gera um número de CNPJ válido.
@@ -326,7 +326,7 @@ O tipo `Phone` representa um número de telefone brasileiro.
 ```csharp
 using BrazilianTypes.Types;
 
-// conversão implicita de string para UF
+// conversão implicita de string para Phone
 Phone phone = "(51) 99999-8888"; // 51999998888
 
 Phone phone = "51999998888"; // 51999998888
@@ -334,7 +334,7 @@ Phone phone = "51999998888"; // 51999998888
 Phone phone = "(51) 3333-4444"; // 5133334444
 Phone phone = "5133334444"; // 5133334444
 
-// conversão implicita de UF para string
+// conversão implicita de Phone para string
 string str = phone;  
 ```
 

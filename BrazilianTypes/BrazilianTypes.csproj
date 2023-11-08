@@ -16,12 +16,11 @@
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
         <PackageReleaseNotes>
-            v6.1.1.0
+            v6.1.1.1
 
-            - Added Text Type;
-            - Added Name Type;
-            - Added Interface ISpecification;
-            - Added Email.
+            - Fix: Cpf and Cnpj do not generate all equals anymore.
+            - Doc: Corrected some typos.
+            - Feature: Implemented an exception to improve debugging when type throws.
 
             All types are 100% test covered.
         </PackageReleaseNotes>

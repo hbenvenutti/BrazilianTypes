@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Types;
 
 namespace Test.Types;
@@ -34,7 +35,7 @@ public class ZipCodeTest
     [InlineData("123456789")]
     [InlineData("aaBBaaBBaaBBaa")]
     public void ShouldThrow(string zipCode) => Assert
-        .Throws<ArgumentException>(() => { ZipCode _ = zipCode; });
+        .Throws<InvalidValueException>(() => { ZipCode _ = zipCode; });
 
     # endregion
 

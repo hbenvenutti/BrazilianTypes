@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Types;
 
 namespace Test.Types;
@@ -65,7 +66,7 @@ public class PhoneTest
     [InlineData("11 1123-5678")]
     [InlineData("11 0123-5678")]
     public void ShouldThrowArgumentException(string phone) =>
-        Assert.Throws<ArgumentException>(() => { Phone _ = phone; });
+        Assert.Throws<InvalidValueException>(() => { Phone _ = phone; });
 
     # endregion
 
