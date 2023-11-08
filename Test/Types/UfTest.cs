@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Types;
 
 namespace Test.Types;
@@ -58,7 +59,7 @@ public class UfTest
     [InlineData(" ")]
     [InlineData("@#")]
     public void ShouldThrowArgumentException(string uf) =>
-        Assert.Throws<ArgumentException>(() => { Uf _ = uf; });
+        Assert.Throws<InvalidValueException>(() => { Uf _ = uf; });
 
     # endregion
 }
