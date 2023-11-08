@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Types;
 
 namespace Test.Types;
@@ -24,7 +25,7 @@ public class TextTest
     [InlineData(null)]
     public void Parse_ShouldThrowArgumentException_WhenInvalidValue(string value)
     {
-        Assert.Throws<ArgumentException>(() =>
+        Assert.Throws<InvalidValueException>(() =>
         {
             Text _ = value;
         });
