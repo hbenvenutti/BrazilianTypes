@@ -173,7 +173,7 @@ A interface `ISpecification` define uma especifacação para validação de dado
 
 ```csharp
 public interface ISpecification<TCode, in TType>
-    where TCode : struct, IType<TType>
+    where TCode : struct
     where TType : struct
 {
     TCode Code { get; protected set; }

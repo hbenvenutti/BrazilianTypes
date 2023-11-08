@@ -6,7 +6,7 @@ namespace BrazilianTypes.Interfaces;
 /// <typeparam name="TCode">Code that represents your application error</typeparam>
 /// <typeparam name="TType">Data to be validated.</typeparam>
 public interface ISpecification<TCode, in TType>
-    where TCode : struct, IType<TType>
+    where TCode : struct
     where TType : struct
 {
     /// <summary>

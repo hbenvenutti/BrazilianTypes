@@ -86,7 +86,7 @@ public class CnpjTest
     [Fact]
     public void ShouldGenerateCnpj()
     {
-        for (var i = 0; i < 100; i++)
+        for (var i = 0; i < 1_000_000_000; i++)
         {
             var cnpj = Cnpj.Generate();
 

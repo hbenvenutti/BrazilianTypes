@@ -22,6 +22,7 @@
             - Fix: Cpf does not generate all equals anymore.
             - Doc: Corrected some typos.
             - Feature: Implemented an exception to improve debugging when type throws.
+            - Fix: Corrected ISpecification interface.
 
             All types are 100% test covered.
 
