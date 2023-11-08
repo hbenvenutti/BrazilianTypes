@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Interfaces;
 
 namespace BrazilianTypes.Types;
@@ -47,8 +48,9 @@ public readonly struct Email : IType<Email>
     {
         if (!TryParse(value, out var email))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
