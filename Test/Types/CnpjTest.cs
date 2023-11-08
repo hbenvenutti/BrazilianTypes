@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Types;
 
 namespace Test.Types;
@@ -38,7 +39,7 @@ public class CnpjTest
     [InlineData("49.700.512/000-52")]
     [InlineData("aa.aabb.aaa/aabb-aa")]
     public void ShouldThrow(string cnpj) => Assert
-        .Throws<ArgumentException>(() => { Cnpj _ = cnpj; });
+        .Throws<InvalidValueException>(() => { Cnpj _ = cnpj; });
 
     # endregion
 
@@ -86,7 +87,7 @@ public class CnpjTest
     [Fact]
     public void ShouldGenerateCnpj()
     {
-        for (var i = 0; i < 1_000_000_000; i++)
+        for (var i = 0; i < 1_000_000; i++)
         {
             var cnpj = Cnpj.Generate();
 

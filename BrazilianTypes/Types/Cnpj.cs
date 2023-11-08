@@ -1,3 +1,4 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Extensions;
 using BrazilianTypes.Interfaces;
 using BrazilianTypes.Services;
@@ -51,8 +52,9 @@ public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
     {
         if (!TryParse(value, out var cnpj))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
@@ -157,7 +159,11 @@ public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
 
         var digits = GenerateDigits(str);
 
-        return $"{str}{digits}";
+        var result = $"{str}{digits}";
+
+        return result.HasAllCharsEqual()
+            ? Generate()
+            : result;
     }
 
     # endregion

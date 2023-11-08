@@ -149,9 +149,9 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
         var result = $"{str}{digits}";
 
-        if (str.HasAllCharsEqual()) { return Generate(); }
-
-        return result;
+        return result.HasAllCharsEqual()
+            ? Generate()
+            : result;
     }
 
     # endregion
