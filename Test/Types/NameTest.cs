@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Types;
 
 namespace Test.Types;
@@ -34,9 +35,6 @@ public class NameTest
     [InlineData("John Doe Jr @#$ 123")]
     public void ShouldNotParseName(string value)
     {
-        Assert.Throws<ArgumentException>(() =>
-        {
-            Name _ = value;
-        });
+        Assert.Throws<InvalidValueException>(() => { Name _ = value; });
     }
 }
