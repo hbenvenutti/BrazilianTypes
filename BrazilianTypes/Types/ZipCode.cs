@@ -1,3 +1,4 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Interfaces;
 using BrazilianTypes.Services;
 
@@ -40,8 +41,9 @@ public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode
     {
         if (!TryParse(value, out var zipCode))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
