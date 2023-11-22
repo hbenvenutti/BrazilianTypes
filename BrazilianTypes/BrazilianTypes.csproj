@@ -1,13 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>7.1.1.1</Version>
+        <Version>8.1.1.1</Version>
         <Authors>Huam Benvenutti</Authors>
         <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet7</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
@@ -15,19 +14,17 @@
         <PackageReadmeFile>Nuget.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageIcon>logo.png</PackageIcon>
-        <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
+        <PackageTags>Brazil Documents CPF CNPJ PHONE UF CEP</PackageTags>
         <PackageReleaseNotes>
-            v7.1.1.1
+            v8.1.1.2
 
-            - Fix: Cpf does not generate all equals anymore.
-            - Doc: Corrected some typos.
-            - Feature: Implemented an exception to improve debugging when type throws.
-            - Fix: Corrected ISpecification interface.
+            - Altered ISpecification
 
-            All types are 100% test covered.
+            Types are covered by tests
 
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
+        <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

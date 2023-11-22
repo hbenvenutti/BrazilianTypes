@@ -1,4 +1,4 @@
-# BrazilianTypes 7.1 | .NET 7
+# BrazilianTypes 8.1 | .NET 8
 
 ---
 
@@ -47,7 +47,7 @@ dados específicos do Brasil, como CPFs.
 
 # Índice
 
-1. [BrazilianTypes](#braziliantypes-71--net-7)
+1. [BrazilianTypes](#braziliantypes-81--net-8)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IType](#itypet)

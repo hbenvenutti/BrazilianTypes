@@ -17,7 +17,7 @@ public interface ISpecification<TCode, in TType>
     /// <summary>
     /// Gets the error messages associated with the specification.
     /// </summary>
-    ICollection<string> ErrorMessages { get; init; }
+    ICollection<string> ErrorMessages { get; }
 
     /// <summary>
     /// Method that validates the data.
