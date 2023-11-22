@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Types;
 
 namespace Test.Types;
@@ -38,7 +39,7 @@ public class CpfTest
     [InlineData("001.815.6001-20")]
     [InlineData("001.815.60a-20")]
     public void ShouldThrow(string cpf) => Assert.
-        Throws<ArgumentException>(() => { Cpf _ = cpf; });
+        Throws<InvalidValueException>(() => { Cpf _ = cpf; });
 
     # endregion
 
@@ -90,7 +91,7 @@ public class CpfTest
     [Fact]
     public void ShouldGenerateCpf()
     {
-        for (var i = 0; i < 100; i++)
+        for (var i = 0; i < 1_000_000; i++)
         {
             var cpf = Cpf.Generate();
 

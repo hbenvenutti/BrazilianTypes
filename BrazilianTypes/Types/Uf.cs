@@ -1,3 +1,4 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Interfaces;
 
 namespace BrazilianTypes.Types;
@@ -33,8 +34,9 @@ public readonly struct Uf : IType<Uf>
     {
         if (!TryParse(value, out var uf))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }

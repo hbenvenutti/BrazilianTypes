@@ -1,6 +1,7 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Extensions;
 using BrazilianTypes.Interfaces;
-using BrazilianTypes.Structs;
+using BrazilianTypes.Services;
 
 namespace BrazilianTypes.Types;
 
@@ -31,7 +32,7 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
     /// Obtém o CPF formatado com a máscara (###.###.###-##).
     /// </summary>
 
-    public string Mask => RegexPatterns.MaskCpf(_value);
+    public string Mask => RegexService.MaskCpf(_value);
 
     /// <summary>
     /// Obtém os dígitos do CPF.
@@ -66,8 +67,9 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
     {
         if (!TryParse(value, out var cpf))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
@@ -84,7 +86,7 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
     public static bool TryParse(string value, out Cpf cpf)
     {
-        value = RegexPatterns
+        value = RegexService
             .GetOnlyNumbers(value);
 
         if (!IsValid(value))
@@ -145,7 +147,11 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
         var digits = GenerateDigits(str);
 
-        return $"{str}{digits}";
+        var result = $"{str}{digits}";
+
+        return result.HasAllCharsEqual()
+            ? Generate()
+            : result;
     }
 
     # endregion

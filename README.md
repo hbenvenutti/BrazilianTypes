@@ -1,12 +1,8 @@
-# BrazilianTypes 7.1
+# BrazilianTypes 8.1 | .NET 8
 
 ---
 
-.NET 7
-
----
-
-A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com 
+A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com
 dados específicos do Brasil, como CPFs.
 
 <div id="header" >
@@ -51,18 +47,22 @@ dados específicos do Brasil, como CPFs.
 
 # Índice
 
-1. [BrazilianTypes](#braziliantypes-71)
+1. [BrazilianTypes](#braziliantypes-81--net-8)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IType](#itypet)
    - [IMaskedType](#imaskedtype)
    - [IGenerable](#igenerablet)
+   - [ISpecification](#ispecificationtcode-ttype)
 4. [Tipos](#tipos)
-    - [CPF](#cpf--itypecpf-imaskedtype-igenerablecpf)
-    - [CNPJ](#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
-    - [CEP](#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
-    - [UF](#uf--itypeuf)
-    - [Phone](#phone--itypephone-imaskedtype)
+   - [CPF](#cpf--itypecpf-imaskedtype-igenerablecpf)
+   - [CNPJ](#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
+   - [CEP](#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
+   - [UF](#uf--itypeuf)
+   - [Phone](#phone--itypephone-imaskedtype)
+   - [Text](#text--itypetext)
+   - [Name](#name--itypename)
+   - [Email](#email--itypeemail)
 5. [Contribuindo](#contribuindo)
 
 ---
@@ -81,11 +81,11 @@ Para começar a usar a biblioteca BrazilianTypes, siga os passos abaixo:
 - Os construtores dos tipos são privados, portanto, não é possível instanciá-los.
 - Ao passar uma `string` inválida para o tipo, uma `exception` será lançada.
 - Para validar se uma `string` pode ser usada por um tipo, utilize o método `TryParse`.
-- Se você quiser criar tipos personalizados, basta criar uma `struct` que 
-implemente as `interfaces` da biblioteca.
+- Se você quiser criar tipos personalizados, basta criar uma `struct` que
+  implemente as `interfaces` da biblioteca.
 
 > Assim, você pode criar tipos como `Password` e `Username` que respeitam os padrões
- usados na lib. Criando as validações necessárias para a sua necessidade.
+usados na lib. Criando as validações necessárias para a sua necessidade.
 
 Exemplo:
 
@@ -167,6 +167,29 @@ public interface IGenerable<out T>
 
 ```
 
+## `ISpecification<TCode, TType>`
+
+A interface `ISpecification` define uma especifacação para validação de dados.
+
+```csharp
+public interface ISpecification<TCode, in TType>
+    where TCode : struct
+    where TType : struct
+{
+    TCode Code { get; protected set; }
+
+    ICollection<string> ErrorMessages { get; init; }
+
+    bool IsSatisfiedBy(TType data);
+}
+```
+
+- `Code`: Código de erro personalizado da sua aplicação.
+- `ErrorMessages`: Mensagens de erro personalizadas da sua aplicação.
+- `IsSatisfiedBy`: Método que valida os dados.
+- `TCode`: Tipo do código de erro. Deve ser um tipo de valor.
+- `TType`: Tipo do dado a ser validado. Deve ser um tipo de valor.
+
 ---
 
 # Tipos
@@ -204,7 +227,7 @@ string digits = cpf.Digits; // 01
 
 ### Métodos
 
-- `TryParse`: Tenta converter uma string em um objeto Cpf.
+- `TryParse`: Tenta converter uma string em um objeto `Cpf`.
 
 ```csharp 
 bool isValid = Cpf.TryParse(string value, out Cpf cpf)
@@ -251,10 +274,10 @@ string digits = cnpj.Digits; // 01
 
 ### Métodos
 
-- `TryParse`: Tenta converter uma string em um objeto Cnpj.
+- `TryParse`: Tenta converter uma string em um objeto `Cnpj`.
 
 ```csharp 
-bool isValid = Cpf.TryParse(string value, out Cnpj cnpj)
+bool isValid = Cnpj.TryParse(string value, out Cnpj cnpj)
 ```
 
 - `Generate`: Gera um número de CNPJ válido.
@@ -267,7 +290,7 @@ Cnpj cnpj = Cnpj.Generate()
 
 ## `ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode>`
 
-O tipo `ZipCode` representa um número de CEP (Código de Endereçamento Postal) 
+O tipo `ZipCode` representa um número de CEP (Código de Endereçamento Postal)
 Brasileiro.
 
 ### Exemplo:
@@ -292,7 +315,7 @@ string str = cep;
 
 ### Métodos
 
-- `TryParse`: Tenta converter uma string em um objeto ZipCode.
+- `TryParse`: Tenta converter uma string em um objeto `ZipCode`.
 
 ```csharp
  bool isValid = ZipCode.TryParse(string value, out ZipCode zipCode)
@@ -324,7 +347,7 @@ string str = uf;
 ```
 ### Métodos
 
-- `TryParse`: Tenta converter uma string em um objeto Uf.
+- `TryParse`: Tenta converter uma string em um objeto `Uf`.
 
 ```csharp
  bool isValid = Uf.TryParse(string value, out Uf uf)
@@ -340,7 +363,7 @@ O tipo `Phone` representa um número de telefone brasileiro.
 ```csharp
 using BrazilianTypes.Types;
 
-// conversão implicita de string para UF
+// conversão implicita de string para Phone
 Phone phone = "(51) 99999-8888"; // 51999998888
 
 Phone phone = "51999998888"; // 51999998888
@@ -348,7 +371,7 @@ Phone phone = "51999998888"; // 51999998888
 Phone phone = "(51) 3333-4444"; // 5133334444
 Phone phone = "5133334444"; // 5133334444
 
-// conversão implicita de UF para string
+// conversão implicita de Phone para string
 string str = phone;  
 ```
 
@@ -377,13 +400,13 @@ string str = phone;
 
 ### Métodos
 
-- `TryParse`: Tenta converter uma string em um objeto Phone.
+- `TryParse`: Tenta converter uma string em um objeto `Phone`.
 
 ```csharp
  bool isValid = Phone.TryParse(string value, out Phone phone)
 ```
 
-- `FromSplit`: Cria um objeto Phone a partir de um DDD e um número de telefone.
+- `FromSplit`: Cria um objeto `Phone` a partir de um DDD e um número de telefone.
 
 ```csharp
  Phone phone = Phone.FromSplit(string ddd, string number)
@@ -391,7 +414,112 @@ string str = phone;
 
 ---
 
+## `Text : IType<Text>`
+
+O tipo `Text` representa um texto que não pode ser nulo ou vazio.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Text text = "Hello World"; // "Hello World"
+
+Text text = " Hello World "; // "Hello World"
+
+Text text = " "; // throw exception
+
+Text text = ""; // throw exception
+
+Text text = null; // throw exception
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Text`.
+
+```csharp
+ bool isValid = Text.TryParse(string value, out Text text)
+```
+
+---
+
+## `Name : IType<Name>`
+
+O tipo `Name` representa um nome que contém apenas letras e não pode ser nulo 
+ou vazio.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Name name = "John Doe"; // "John Doe"
+
+Name name = " John Doe "; // "John Doe"
+
+Name name = "João"; // João
+Name name = "Júlia"; // Júlia
+
+Name name = " "; // throw exception
+
+Name name = ""; // throw exception
+
+Name name = null; // throw exception
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Name`.
+
+```csharp
+ bool isValid = Name.TryParse(string value, out Name name)
+```
+
+---
+
+## `Email : IType<Email>`
+
+O tipo `Email` representa um endereço de e-mail.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Email email = "foobar@gmail.com"; // "foobar@gmail.com"
+
+Email email = "FOOBAR@GMAIL.COM"; // "foobar@gmail.com"
+Email email = " FOOBAR@GMAIL.COM "; // "foobar@gmail.com"
+
+Email email = "foobar@gmail"; // "throw exception"
+Email email = ".foobar@gmail.com"; // "throw exception"
+Email email = "foobar.gmail"; // "throw exception"
+Email email = "foobar@gmail."; // "throw exception"
+Email email = "foobar@gmail..com"; // "throw exception"
+Email email = "foobar.gmail.com"; // "throw exception"
+Email email = "foobar@.gmail.com"; // "throw exception"
+Email email = "@gmail.com"; // "throw exception"
+Email email = "@"; // "throw exception"
+Email email = "foobar"; // "throw exception"
+Email email = "foobar@"; // "throw exception"
+
+Email email = " "; // throw exception
+Email email = ""; // throw exception
+Email email = null; // throw exception
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Email`.
+
+```csharp
+ bool isValid = Email.TryParse(string value, out Email email)
+```
+
+---
+
 # Contribuindo
 
-Se encontrar algum problema ou tiver sugestões de melhorias, sinta-se à vontade 
+Se encontrar algum problema ou tiver sugestões de melhorias, sinta-se à vontade
 para abrir uma issue ou enviar um pull request.

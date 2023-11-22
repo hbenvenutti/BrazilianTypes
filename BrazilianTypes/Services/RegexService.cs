@@ -1,12 +1,12 @@
 using System.Text.RegularExpressions;
 
-namespace BrazilianTypes.Structs;
+namespace BrazilianTypes.Services;
 
 /// <summary>
 /// Classe que contém padrões de expressões regulares.
 /// </summary>
 
-internal readonly partial struct RegexPatterns
+internal readonly partial struct RegexService
 {
     # region ---- remove mask --------------------------------------------------
 
@@ -98,6 +98,16 @@ internal readonly partial struct RegexPatterns
     /// <returns>O Cnpj formatado com a máscara.</returns>
     internal static string MaskCnpj(string value) => CnpjMask()
         .Replace(input: value, replacement: @"$1.$2.$3/$4-$5");
+
+    # endregion
+
+    # region ---- remove white space -------------------------------------------
+
+    [GeneratedRegex(pattern: @"\s+")]
+    private static partial Regex WhiteSpace();
+
+    internal static string RemoveWhiteSpace(string value) => WhiteSpace()
+        .Replace(input: value, replacement: "");
 
     # endregion
 }

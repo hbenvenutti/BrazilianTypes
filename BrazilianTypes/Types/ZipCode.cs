@@ -1,19 +1,18 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Interfaces;
-using BrazilianTypes.Structs;
+using BrazilianTypes.Services;
 
 namespace BrazilianTypes.Types;
 
 /// <summary>
-/// Representa um CEP (Código de Endereçamento Postal) brasileiro.
+/// Represents a brazilian CEP (Código de Endereçamento Postal).
 /// </summary>
 
 public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode>
 {
     # region ---- constants ----------------------------------------------------
 
-    /// <summary>
-    /// Mensagem de erro para CEPs inválidos.
-    /// </summary>
+    /// <inheritdoc/>
 
     public static string ErrorMessage => "Zip code is invalid.";
 
@@ -22,10 +21,10 @@ public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode
     private readonly string _value;
 
     /// <summary>
-    /// Obtém o valor do CEP com a máscara aplicada (#####-###).
+    /// Gets the zip code with a masking pattern applied.
     /// </summary>
 
-    public string Mask => RegexPatterns.MaskZipCode(_value);
+    public string Mask => RegexService.MaskZipCode(_value);
 
     # region ---- constructor --------------------------------------------------
 
@@ -42,8 +41,9 @@ public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode
     {
         if (!TryParse(value, out var zipCode))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
@@ -51,28 +51,21 @@ public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode
         return zipCode;
     }
 
-    /// <summary>
-    /// Tenta analisar uma string e retorna uma instância de <see cref="ZipCode"/>.
-    /// </summary>
-    /// <param name="value">A string a ser analisada.</param>
-    /// <param name="zipCode">Quando este método retorna, contém o valor de <see cref="ZipCode"/>
-    /// analisado, se a análise for bem-sucedida, ou o padrão se a análise falhar.
-    /// </param>
-    /// <returns><c>true</c> se a análise foi bem-sucedida; caso contrário, <c>false</c>.</returns>
+    /// <inheritdoc/>
 
-    public static bool TryParse(string value, out ZipCode zipCode)
+    public static bool TryParse(string value, out ZipCode parsedValue)
     {
-        value = RegexPatterns
+        value = RegexService
             .GetOnlyNumbers(value);
 
         if (!IsValid(value))
         {
-            zipCode = default;
+            parsedValue = default;
 
             return false;
         }
 
-        zipCode = new ZipCode(value);
+        parsedValue = new ZipCode(value);
 
         return true;
     }
@@ -117,15 +110,16 @@ public readonly struct ZipCode : IType<ZipCode>, IMaskedType, IGenerable<ZipCode
     /// <summary>
     /// Converts a string to a <see cref="ZipCode"/>.
     /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <param name="value">The string representing the <see cref="ZipCode"/>.
+    /// </param>
+    /// <returns>The resulting <see cref="ZipCode"/>.</returns>
     public static implicit operator ZipCode(string value) => Parse(value);
 
     /// <summary>
     /// Converts a <see cref="ZipCode"/> to a string.
     /// </summary>
-    /// <param name="zipCode"></param>
-    /// <returns></returns>
+    /// <param name="zipCode">The <see cref="ZipCode"/> to be converted.</param>
+    /// <returns>The resulting string.</returns>
     public static implicit operator string(ZipCode zipCode) => zipCode._value;
 
     # endregion

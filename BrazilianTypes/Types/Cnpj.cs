@@ -1,6 +1,7 @@
+using BrazilianTypes.Exceptions;
 using BrazilianTypes.Extensions;
 using BrazilianTypes.Interfaces;
-using BrazilianTypes.Structs;
+using BrazilianTypes.Services;
 
 namespace BrazilianTypes.Types;
 
@@ -19,7 +20,7 @@ public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
     /// <summary>
     /// Gets the CNPJ with a masking pattern applied.
     /// </summary>
-    public string Mask => RegexPatterns.MaskCnpj(_value);
+    public string Mask => RegexService.MaskCnpj(_value);
 
     /// <summary>
     /// Gets the digits of the CNPJ.
@@ -51,8 +52,9 @@ public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
     {
         if (!TryParse(value, out var cnpj))
         {
-            throw new ArgumentException(
+            throw new InvalidValueException(
                 message: ErrorMessage,
+                value: value,
                 paramName: nameof(value)
             );
         }
@@ -69,7 +71,7 @@ public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
 
     public static bool TryParse(string value, out Cnpj cnpj)
     {
-        value = RegexPatterns
+        value = RegexService
             .GetOnlyNumbers(value);
 
         if (!IsValid(value))
@@ -157,7 +159,11 @@ public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
 
         var digits = GenerateDigits(str);
 
-        return $"{str}{digits}";
+        var result = $"{str}{digits}";
+
+        return result.HasAllCharsEqual()
+            ? Generate()
+            : result;
     }
 
     # endregion

@@ -1,36 +1,30 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>7.1.0.4</Version>
+        <Version>8.1.1.2</Version>
         <Authors>Huam Benvenutti</Authors>
-        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet7</RepositoryUrl>
+        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet8</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
         <Description>Lib with logic for brazilian data types. (CPF, CNPJ, CEP, UF)</Description>
         <PackageReadmeFile>Nuget.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageIcon>logo.png</PackageIcon>
-        <PackageTags>Brazil Documents CPF CNPJ PHONE UF</PackageTags>
+        <PackageTags>Brazil Documents CPF CNPJ PHONE UF CEP</PackageTags>
         <PackageReleaseNotes>
-            v7.1.0.4
+            v8.1.1.2
 
-            - Added Test Coverage;
-            - Fixed CPF Mask;
-            - Fixed Cpf Digits;
-            - Fixed CNPJ Mask;
-            - Fixed ZipCode Generation;
-            - Fixed ZipCode Mask;
-            - Fixed Phone Mask.
+            - Altered ISpecification
 
-            All types are now 100% test covered.
+            Types are covered by tests
 
         </PackageReleaseNotes>
         <RepositoryType>Github</RepositoryType>
+        <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -46,10 +40,10 @@
         <None Include="../Nuget.md" Pack="true" PackagePath=""/>
         <None Include="..\logo.png">
           <Pack>True</Pack>
-          <PackagePath></PackagePath>
+          <!--suppress CheckTagEmptyBody -->
+            <PackagePath></PackagePath>
           <Link>logo.png</Link>
         </None>
-        <None Remove="Types\Cpf.cs~" />
 
     </ItemGroup>
 

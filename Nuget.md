@@ -1,26 +1,28 @@
-# BrazilianTypes 7.1
+# BrazilianTypes 8.1 | .NET 8
 
 A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com
 dados específicos do Brasil, como CPFs.
-
-.NET 7
 
 ---
 
 # Índice
 
-1. [BrazilianTypes](#braziliantypes-71)
+1. [BrazilianTypes](#braziliantypes-81--net-8)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IType](#itypet)
    - [IMaskedType](#imaskedtype)
    - [IGenerable](#igenerablet)
+   - [ISpecification](#ispecificationtcode-ttype)
 4. [Tipos](#tipos)
    - [CPF](#cpf--itypecpf-imaskedtype-igenerablecpf)
    - [CNPJ](#cnpj--itypecnpj-imaskedtype-igenerablecnpj)
    - [CEP](#zipcode--itypezipcode-imaskedtype-igenerablezipcode)
    - [UF](#uf--itypeuf)
    - [Phone](#phone--itypephone-imaskedtype)
+   - [Text](#text--itypetext)
+   - [Name](#name--itypename)
+   - [Email](#email--itypeemail)
 5. [Contribuindo](#contribuindo)
 
 ---
@@ -125,6 +127,29 @@ public interface IGenerable<out T>
 
 ```
 
+## `ISpecification<TCode, TType>`
+
+A interface `ISpecification` define uma especifacação para validação de dados.
+
+```csharp
+public interface ISpecification<TCode, in TType>
+    where TCode : struct
+    where TType : struct
+{
+    TCode Code { get; protected set; }
+
+    ICollection<string> ErrorMessages { get; init; }
+
+    bool IsSatisfiedBy(TType data);
+}
+```
+
+- `Code`: Código de erro personalizado da sua aplicação.
+- `ErrorMessages`: Mensagens de erro personalizadas da sua aplicação.
+- `IsSatisfiedBy`: Método que valida os dados.
+- `TCode`: Tipo do código de erro. Deve ser um tipo de valor.
+- `TType`: Tipo do dado a ser validado. Deve ser um tipo de valor.
+
 ---
 
 # Tipos
@@ -212,7 +237,7 @@ string digits = cnpj.Digits; // 01
 - `TryParse`: Tenta converter uma string em um objeto Cnpj.
 
 ```csharp 
-bool isValid = Cpf.TryParse(string value, out Cnpj cnpj)
+bool isValid = Cnpj.TryParse(string value, out Cnpj cnpj)
 ```
 
 - `Generate`: Gera um número de CNPJ válido.
@@ -298,7 +323,7 @@ O tipo `Phone` representa um número de telefone brasileiro.
 ```csharp
 using BrazilianTypes.Types;
 
-// conversão implicita de string para UF
+// conversão implicita de string para Phone
 Phone phone = "(51) 99999-8888"; // 51999998888
 
 Phone phone = "51999998888"; // 51999998888
@@ -306,7 +331,7 @@ Phone phone = "51999998888"; // 51999998888
 Phone phone = "(51) 3333-4444"; // 5133334444
 Phone phone = "5133334444"; // 5133334444
 
-// conversão implicita de UF para string
+// conversão implicita de Phone para string
 string str = phone;  
 ```
 
@@ -345,6 +370,110 @@ string str = phone;
 
 ```csharp
  Phone phone = Phone.FromSplit(string ddd, string number)
+```
+
+---
+
+## `Text : IType<Text>`
+
+O tipo `Text` representa um texto que não pode ser nulo ou vazio.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Text text = "Hello World"; // "Hello World"
+
+Text text = " Hello World "; // "Hello World"
+
+Text text = " "; // throw exception
+
+Text text = ""; // throw exception
+
+Text text = null; // throw exception
+```
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Text`.
+
+```csharp
+ bool isValid = Text.TryParse(string value, out Text text)
+```
+
+---
+
+## `Name : IType<Name>`
+
+O tipo `Name` representa um nome que contém apenas letras e não pode ser nulo
+ou vazio.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Name name = "John Doe"; // "John Doe"
+
+Name name = " John Doe "; // "John Doe"
+
+Name name = "João"; // João
+Name name = "Júlia"; // Júlia
+
+Name name = " "; // throw exception
+
+Name name = ""; // throw exception
+
+Name name = null; // throw exception
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Name`.
+
+```csharp
+ bool isValid = Name.TryParse(string value, out Name name)
+```
+
+---
+
+## `Email : IType<Email>`
+
+O tipo `Email` representa um endereço de e-mail.
+
+### Exemplo:
+
+```csharp
+using BrazilianTypes.Types;
+
+Email email = "foobar@gmail.com"; // "foobar@gmail.com"
+
+Email email = "FOOBAR@GMAIL.COM"; // "foobar@gmail.com"
+Email email = " FOOBAR@GMAIL.COM "; // "foobar@gmail.com"
+
+Email email = "foobar@gmail"; // "throw exception"
+Email email = ".foobar@gmail.com"; // "throw exception"
+Email email = "foobar.gmail"; // "throw exception"
+Email email = "foobar@gmail."; // "throw exception"
+Email email = "foobar@gmail..com"; // "throw exception"
+Email email = "foobar.gmail.com"; // "throw exception"
+Email email = "foobar@.gmail.com"; // "throw exception"
+Email email = "@gmail.com"; // "throw exception"
+Email email = "@"; // "throw exception"
+Email email = "foobar"; // "throw exception"
+Email email = "foobar@"; // "throw exception"
+
+Email email = " "; // throw exception
+Email email = ""; // throw exception
+Email email = null; // throw exception
+```
+
+### Métodos
+
+- `TryParse`: Tenta converter uma string em um objeto `Email`.
+
+```csharp
+ bool isValid = Email.TryParse(string value, out Email email)
 ```
 
 ---
