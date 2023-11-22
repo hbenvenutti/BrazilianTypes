@@ -8,7 +8,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Version>8.1.1.1</Version>
         <Authors>Huam Benvenutti</Authors>
-        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet7</RepositoryUrl>
+        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet8</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
         <Description>Lib with logic for brazilian data types. (CPF, CNPJ, CEP, UF)</Description>
         <PackageReadmeFile>Nuget.md</PackageReadmeFile>
