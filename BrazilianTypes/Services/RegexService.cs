@@ -33,7 +33,7 @@ internal readonly partial struct RegexService
     internal static string MaskCpf(string value) => CpfMask()
         .Replace(input: value, replacement: "$1.$2.$3-$4");
 
-    internal static string MaskCpfSecurity(string value) => CpfMask()
+    internal static string SecurityMaskCpf(string value) => CpfMask()
         .Replace(input: value, replacement: "***.$2.$3-**");
 
     # endregion
@@ -65,6 +65,9 @@ internal readonly partial struct RegexService
 
     internal static string MaskCnpj(string value) => CnpjMask()
         .Replace(input: value, replacement: @"$1.$2.$3/$4-$5");
+
+    internal static string SecurityMaskCnpj(string value) => CnpjMask()
+        .Replace(input: value, replacement: "**.$2.$3/****-**");
 
     # endregion
 

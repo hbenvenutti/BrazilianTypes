@@ -64,6 +64,27 @@ public class CnpjTest
 
     # endregion
 
+    # region ---- security mask ------------------------------------------------
+
+    [Theory]
+    [InlineData("49.700.512/0001-50")]
+    [InlineData("49700512000150")]
+    [InlineData("49.700.512/0001/50")]
+    [InlineData("49/700/512/0001/50")]
+    [InlineData("49-700-512-0001-50")]
+    [InlineData("49.700.512.0001.50")]
+    public void ShouldGenerateSecurityMask(string cnpj)
+    {
+        Cnpj parsedCnpj = cnpj;
+
+        Assert.Equal(
+            expected: "**.700.512/****-**",
+            actual: parsedCnpj.SecurityMask
+        );
+    }
+
+    # endregion
+
     # region ---- digits -------------------------------------------------------
 
     [Theory]
