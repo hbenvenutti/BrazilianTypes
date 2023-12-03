@@ -8,7 +8,8 @@ namespace BrazilianTypes.Types;
 /// <summary>
 /// Represents a Brazilian CNPJ (Cadastro Nacional da Pessoa Jurídica) number.
 /// </summary>
-public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType, ISecurityMaskedType
+public readonly struct Cnpj :
+    IType<Cnpj>, IGenerable<Cnpj>, IMaskedType, ISecurityMaskedType
 {
     # region ---- properties ---------------------------------------------------
 
