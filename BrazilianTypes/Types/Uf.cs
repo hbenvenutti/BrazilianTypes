@@ -1,3 +1,4 @@
+using BrazilianTypes.Enums;
 using BrazilianTypes.Exceptions;
 using BrazilianTypes.Interfaces;
 
@@ -18,12 +19,6 @@ public readonly struct Uf : IType<Uf>
     # region ---- private properties -------------------------------------------
 
     private readonly string _value;
-
-    private enum State
-    {
-        AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR,
-        RJ, RN, RO, RR, RS, SC, SE, SP, TO
-    }
 
     # endregion
 
@@ -88,7 +83,7 @@ public readonly struct Uf : IType<Uf>
     {
         if (value.Length != 2) { return false; }
 
-        return Enum.TryParse(value, out State _);
+        return Enum.TryParse(value, out UfEnum _);
     }
 
     # endregion
