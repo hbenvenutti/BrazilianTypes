@@ -6,17 +6,14 @@ using BrazilianTypes.Services;
 namespace BrazilianTypes.Types;
 
 /// <summary>
-/// Representa um número de CPF (Cadastro de Pessoas Físicas) válido.
+/// Represents CPF (Cadastro de Pessoas Físicas) number.
 /// </summary>
 
 public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 {
     # region ---- constants ----------------------------------------------------
 
-    /// <summary>
-    /// Mensagem de erro padrão para CPF inválido.
-    /// </summary>
-
+    /// <summary> Default error message for an invalid CPF.</summary>
     public static string ErrorMessage => "CPF is invalid.";
 
     private static readonly byte[] Mult1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -28,26 +25,15 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
     private readonly string _value;
 
-    /// <summary>
-    /// Obtém o CPF formatado com a máscara (###.###.###-##).
-    /// </summary>
-
+    ///<summary>Gets the CPF formatted with the mask (###.###.###-##).</summary>
     public string Mask => RegexService.MaskCpf(_value);
 
-    /// <summary>
-    /// Obtém os dígitos do CPF.
-    /// </summary>
-
+    /// <summary>Gets the digits of the CPF.</summary>
     public string Digits => _value[9..];
 
     # endregion
 
     # region ---- constructor --------------------------------------------------
-
-    /// <summary>
-    /// Construtor privado para criar uma instância de Cpf a partir de uma string.
-    /// </summary>
-    /// <param name="value">O valor do CPF.</param>
 
     private Cpf(string value)
     {
@@ -58,11 +44,6 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
     # region ---- parse --------------------------------------------------------
 
-    /// <summary>
-    /// Converte uma string em um objeto Cpf.
-    /// </summary>
-    /// <param name="value">A string representando o CPF.</param>
-    /// <returns>O objeto Cpf correspondente.</returns>
     private static Cpf Parse(string value)
     {
         if (!TryParse(value, out var cpf))
@@ -78,11 +59,14 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
     }
 
     /// <summary>
-    /// Tenta converter uma string em um objeto Cpf.
+    /// Tries to parse the specified value and returns a Cpf instance.
     /// </summary>
-    /// <param name="value">A string representando o CPF.</param>
-    /// <param name="cpf">O objeto Cpf resultante, se a conversão for bem-sucedida.</param>
-    /// <returns>True se a conversão for bem-sucedida; caso contrário, False.</returns>
+    /// <param name="value">The string value to parse.</param>
+    /// <param name="cpf">When this method returns, contains the parsed Cpf
+    /// instance if the parsing was successful, or the default value if the
+    /// parsing failed.</param>
+    /// <returns><c>true</c> if the parsing was successful; otherwise,
+    /// <c>false</c>.</returns>
 
     public static bool TryParse(string value, out Cpf cpf)
     {
@@ -105,12 +89,6 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
     # region ---- validation ---------------------------------------------------
 
-    /// <summary>
-    /// Verifica se um CPF é válido.
-    /// </summary>
-    /// <param name="cpf">O CPF a ser validado.</param>
-    /// <returns>True se o CPF for válido; caso contrário, False.</returns>
-
     private static bool IsValid(string cpf )
     {
         if (cpf.Length != 11) { return false; }
@@ -128,9 +106,12 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
     # region ---- generate -----------------------------------------------------
 
     /// <summary>
-    /// Gera um número de CPF válido.
+    /// Generates a random CPF (Cadastro de Pessoas Físicas) number.
     /// </summary>
-    /// <returns>O CPF gerado.</returns>
+    /// <returns>A randomly generated CPF number.</returns>
+    /// <remarks>
+    /// The generated CPF number is guaranteed to be valid.
+    /// </remarks>
 
     public static Cpf Generate()
     {
@@ -192,18 +173,10 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
 
     # region ---- implicit operators -------------------------------------------
 
-    /// <summary>
-    /// Converts a string into a <see cref="Cpf"/>.
-    /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <summary></summary>
     public static implicit operator Cpf(string value) => Parse(value);
 
-    /// <summary>
-    /// Converts a <see cref="Cpf"/> into a string.
-    /// </summary>
-    /// <param name="cpf"></param>
-    /// <returns></returns>
+    /// <summary></summary>
     public static implicit operator string(Cpf cpf) => cpf._value;
 
     #endregion
