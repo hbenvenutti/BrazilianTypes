@@ -9,27 +9,30 @@ namespace BrazilianTypes.Types;
 /// Represents CPF (Cadastro de Pessoas Físicas) number.
 /// </summary>
 
-public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>
+public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>, ISecurityMaskedType
 {
-    # region ---- constants ----------------------------------------------------
+    # region ---- private properties -------------------------------------------
 
-    /// <summary> Default error message for an invalid CPF.</summary>
-    public static string ErrorMessage => "CPF is invalid.";
+    private readonly string _value;
 
     private static readonly byte[] Mult1 = { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
     private static readonly byte[] Mult2 = { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
 
     # endregion
 
-    # region ---- properties ---------------------------------------------------
+    # region ---- public properties --------------------------------------------
 
-    private readonly string _value;
+    /// <summary> Default error message for an invalid CPF.</summary>
+    public static string ErrorMessage => "CPF is invalid.";
 
     ///<summary>Gets the CPF formatted with the mask (###.###.###-##).</summary>
     public string Mask => RegexService.MaskCpf(_value);
 
     /// <summary>Gets the digits of the CPF.</summary>
     public string Digits => _value[9..];
+
+    ///<summary>Gets the CPF formatted with the security mask (***.###.###-**).</summary>
+    public string SecurityMask => RegexService.MaskCpfSecurity(_value);
 
     # endregion
 

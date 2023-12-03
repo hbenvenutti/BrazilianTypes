@@ -64,6 +64,27 @@ public class CpfTest
 
     # endregion
 
+    # region ---- security mask ------------------------------------------------
+
+    [Theory]
+    [InlineData("001.815.600-20")]
+    [InlineData("00181560020")]
+    [InlineData("001/815/600/20")]
+    [InlineData("001-815-600-20")]
+    [InlineData("001-815-600a-20")]
+    [InlineData("0-0-1-8-1-5-6-0-0-2-0")]
+    public void ShouldGenerateSecurityMask(string cpf)
+    {
+        Cpf parsedCpf = cpf;
+
+        Assert.Equal(
+            expected: "***.815.600-**",
+            actual: parsedCpf.SecurityMask
+        );
+    }
+
+    # endregion
+
     # region ---- digits -------------------------------------------------------
 
     [Theory]
