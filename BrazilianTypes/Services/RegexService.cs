@@ -56,6 +56,9 @@ internal readonly partial struct RegexService
     internal static string MaskPhone(string value) => PhoneMask()
         .Replace(input: value, replacement: @"($1) $2-$3");
 
+    internal static string SecurityMaskPhone(string value) => PhoneMask()
+        .Replace(input: value, replacement: @"($1) ****-$2");
+
     # endregion
 
     # region ---- cnpj ---------------------------------------------------------

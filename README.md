@@ -1,49 +1,14 @@
-# BrazilianTypes 8.1 | .NET 8
+# BrazilianTypes
+![Static Badge](https://img.shields.io/badge/.NET-8-blue)
+![Nuget](https://img.shields.io/nuget/v/BrazilianTypes)
+![GitHub License](https://img.shields.io/github/license/hbenvenutti/BrazilianTypes)
+![GitHub repo size](https://img.shields.io/github/repo-size/hbenvenutti/BrazilianTypes)
+[![built with Codeium](https://codeium.com/badges/main)](https://codeium.com/badges/main)
 
 ---
 
 A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com
 dados específicos do Brasil, como CPFs.
-
-<div id="header" >
-	<img
-		alt="GitHub release (latest by date)"
-		src="https://img.shields.io/github/v/release/hbenvenutti/BrazilianTypes?style=plastic"
-		title="Latest Release"
-	/>
-	<img
-		alt="GitHub last commit (dotnet7)"
-		src="https://img.shields.io/github/last-commit/hbenvenutti/BrazilianTypes/dotnet7?label=last%20commit&style=plastic"
-		title="Last Commit on dotnet7 branch"
-	/>
-	<img
-		alt="GitHub contributors"
-		src="https://img.shields.io/github/contributors/hbenvenutti/BrazilianTypes?style=plastic"
-		title="Contributors"
-	>
-	<img
-		alt="GitHub commit activity (dotnet7)"
-		src="https://img.shields.io/github/commit-activity/w/hbenvenutti/BrazilianTypes/dotnet7?style=plastic"
-	>
-	<img
-		alt="GitHub forks"
-		src="https://img.shields.io/github/forks/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-	<img
-		alt="GitHub Repo stars"
-		src="https://img.shields.io/github/stars/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-	<img
-		alt="GitHub watchers"
-		src="https://img.shields.io/github/watchers/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-	<img
-		alt="GitHub code size in bytes"
-		src="https://img.shields.io/github/languages/code-size/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-</div>
-
----
 
 # Índice
 
