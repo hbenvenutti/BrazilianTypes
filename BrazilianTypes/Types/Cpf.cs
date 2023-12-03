@@ -32,7 +32,7 @@ public readonly struct Cpf : IType<Cpf>, IMaskedType, IGenerable<Cpf>, ISecurity
     public string Digits => _value[9..];
 
     ///<summary>Gets the CPF formatted with the security mask (***.###.###-**).</summary>
-    public string SecurityMask => RegexService.MaskCpfSecurity(_value);
+    public string SecurityMask => RegexService.SecurityMaskCpf(_value);
 
     # endregion
 
