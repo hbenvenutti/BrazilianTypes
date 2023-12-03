@@ -95,6 +95,31 @@ public class PhoneTest
 
     # endregion
 
+    # region ---- security mask ------------------------------------------------
+
+    [Theory]
+    [InlineData("11912345678", "(11) ****-5678")]
+    [InlineData("(11) 91234-5678", "(11) ****-5678")]
+    [InlineData("11 91234-5678", "(11) ****-5678")]
+    [InlineData("11 91234 5678", "(11) ****-5678")]
+    [InlineData("11 912345678", "(11) ****-5678")]
+    [InlineData("1131235678", "(11) ****-5678")]
+    [InlineData("(11) 3123-5678", "(11) ****-5678")]
+    [InlineData("11 3123-5678", "(11) ****-5678")]
+    [InlineData("11 3123 5678", "(11) ****-5678")]
+    [InlineData("11 31235678", "(11) ****-5678")]
+    public void ShouldGetSecurityMask(string phone, string expected)
+    {
+        Phone result = phone;
+
+        Assert.Equal(
+            expected: expected,
+            actual: result.SecurityMask
+        );
+    }
+
+    # endregion
+
     # region ---- Ddd ----------------------------------------------------------
 
     [Theory]

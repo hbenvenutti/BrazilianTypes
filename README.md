@@ -12,7 +12,7 @@ dados específicos do Brasil, como CPFs.
 
 # Índice
 
-1. [BrazilianTypes](#braziliantypes-81--net-8)
+1. [BrazilianTypes](#braziliantypes)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IType](#itypet)
@@ -93,6 +93,26 @@ readonly struct Password : IType<Password>
 
 ---
 
+# Data Annotations
+
+Pode-se usar data annotations para validar os objetos.
+
+- Todos os tipos tem anotações.
+
+```csharp
+public class User 
+{
+    [Required]
+    [Cpf(ErrorCode = 400)]
+    string Cpf { get; set; }
+     
+    [ZipCode]
+    string ZipCode { get; set; }
+}
+```
+
+---
+
 # Interfaces
 
 ## `IType<T>`
@@ -130,6 +150,17 @@ public interface IGenerable<out T>
     static abstract T Generate();
 }
 
+```
+
+## `ISecurityMaskedType`
+
+Interface para tipos que precisam esconder parte de seus dados.
+
+```csharp
+public interface ISecurityMaskedType
+{
+    string SecurityMask { get; }
+}
 ```
 
 ## `ISpecification<TCode, TType>`
@@ -184,6 +215,12 @@ string str = cpf;  // 12345678901
 string mask = cpf.Mask; // 123.456.789-01
 ```
 
+- `SecurityMask`: Obtém o CPF formatado com a máscara (\*\*\*.###.###-\*\*).
+
+```csharp 
+string mask = cpf.SecurityMask; // ***.456.789-**
+```
+
 - `Digits`: Obtém os dígitos do CPF.
 
 ```csharp 
@@ -228,7 +265,14 @@ string str = cnpj;  // 12345678000101;
 - `Mask`: Obtém o CNPJ formatado com a máscara (##.###.###/####-##).
 
 ```csharp 
-string mask = cnpj.Mask; // "12.345.678/0001-01"
+string mask = cnpj.Mask; // 12.345.678/0001-01
+```
+
+- `SecurityMask`: Obtém o CNPJ formatado com a máscara 
+(\*\*.###.###/\*\*\*\*-\*\*).
+
+```csharp 
+string mask = cnpj.SecurityMask; // **.345.678/****-**
 ```
 
 - `Digits`: Obtém os dígitos do CNPJ.
@@ -348,7 +392,14 @@ string str = phone;
  string landline = phone.Mask; // (51) 3333-4444
 ```
 
+- `SecurityMask`: Obtém o Phone formatado com a máscara ((##) \*\*\*\*-####).
+
+```csharp 
+string mask = phone.SecurityMask; // (51) ****-8888
+```
+
 - `IsMobile`: Obtém um valor que indica se o telefone é móvel.
+    
 ```csharp
  bool isMobile = phone.IsMobile; // true
 ```
