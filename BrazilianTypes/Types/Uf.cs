@@ -4,16 +4,18 @@ using BrazilianTypes.Interfaces;
 namespace BrazilianTypes.Types;
 
 /// <summary>
-/// Representa uma Unidade Federativa (UF) do Brasil.
+/// Represents a Brazilian state abbreviation (UF).
 /// </summary>
 
 public readonly struct Uf : IType<Uf>
 {
     /// <summary>
-    /// Mensagem de erro padrão quando a UF é inválida.
+    /// Gets the error message for an invalid UF.
     /// </summary>
 
     public static string ErrorMessage => "UF is invalid.";
+
+    # region ---- private properties -------------------------------------------
 
     private readonly string _value;
 
@@ -23,10 +25,16 @@ public readonly struct Uf : IType<Uf>
         RJ, RN, RO, RR, RS, SC, SE, SP, TO
     }
 
+    # endregion
+
+    # region ---- constructor --------------------------------------------------
+
     private Uf(string value)
     {
         _value = value;
     }
+
+    # endregion
 
     # region ---- parse --------------------------------------------------------
 
@@ -45,11 +53,17 @@ public readonly struct Uf : IType<Uf>
     }
 
     /// <summary>
-    /// Tenta analisar uma string e retorna uma instância de Uf correspondente.
+    /// Tries to parse a string representation of a UF and returns a value
+    /// indicating whether the parsing was successful.
     /// </summary>
-    /// <param name="value">Valor a ser analisado.</param>
-    /// <param name="uf">Instância de Uf, se a análise for bem-sucedida.</param>
-    /// <returns>True se a análise for bem-sucedida, False caso contrário.</returns>
+    /// <param name="value">The string representation of the UF.</param>
+    /// <param name="uf">When this method returns, contains the parsed UF if
+    /// the parsing was successful; otherwise, contains the default value of
+    /// <see cref="Uf"/>.
+    /// </param>
+    /// <returns><c>true</c> if the parsing was successful; otherwise,
+    /// <c>false</c>.
+    /// </returns>
 
     public static bool TryParse(string value, out Uf uf)
     {
@@ -81,18 +95,10 @@ public readonly struct Uf : IType<Uf>
 
     # region ---- operators ----------------------------------------------------
 
-    /// <summary>
-    /// Converts a string into a <see cref="Uf"/> instance.
-    /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
+    /// <summary></summary>
     public static implicit operator Uf(string value) => Parse(value);
 
-    /// <summary>
-    /// Converts a <see cref="Uf"/> instance into a string.
-    /// </summary>
-    /// <param name="uf"></param>
-    /// <returns></returns>
+    /// <summary></summary>
     public static implicit operator string(Uf uf) => uf._value;
 
     # endregion
