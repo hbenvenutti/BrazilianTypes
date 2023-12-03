@@ -6,19 +6,20 @@
         <AssemblyName>BrazilianTypes</AssemblyName>
         <RootNamespace>BrazilianTypes</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>8.1.1.2</Version>
+        <Version>8.2</Version>
         <Authors>Huam Benvenutti</Authors>
-        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/dotnet8</RepositoryUrl>
+        <RepositoryUrl>https://github.com/hbenvenutti/BrazilianTypes/tree/main</RepositoryUrl>
         <Title>Brazilian Data Types</Title>
         <Description>Lib with logic for brazilian data types. (CPF, CNPJ, CEP, UF)</Description>
-        <PackageReadmeFile>Nuget.md</PackageReadmeFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <PackageIcon>logo.png</PackageIcon>
         <PackageTags>Brazil Documents CPF CNPJ PHONE UF CEP</PackageTags>
         <PackageReleaseNotes>
-            v8.1.1.2
+            version: 8.2
 
-            - Altered ISpecification
+            - Added Security Masks to CNPJ, CPF and Phone
+            - Added Data Annotations for types.
 
             Types are covered by tests
 
@@ -37,7 +38,7 @@
 
     <ItemGroup>
         <None Include="../LICENSE" Pack="true" PackagePath=""/>
-        <None Include="../Nuget.md" Pack="true" PackagePath=""/>
+        <None Include="../README.md" Pack="true" PackagePath=""/>
         <None Include="..\logo.png">
           <Pack>True</Pack>
           <!--suppress CheckTagEmptyBody -->

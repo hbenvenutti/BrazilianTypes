@@ -8,7 +8,8 @@ namespace BrazilianTypes.Types;
 /// <summary>
 /// Represents a Brazilian CNPJ (Cadastro Nacional da Pessoa Jurídica) number.
 /// </summary>
-public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
+public readonly struct Cnpj :
+    IType<Cnpj>, IGenerable<Cnpj>, IMaskedType, ISecurityMaskedType
 {
     # region ---- properties ---------------------------------------------------
 
@@ -17,14 +18,13 @@ public readonly struct Cnpj : IType<Cnpj>, IGenerable<Cnpj>, IMaskedType
     /// </summary>
     public static string ErrorMessage => "Invalid CNPJ";
 
-    /// <summary>
-    /// Gets the CNPJ with a masking pattern applied.
-    /// </summary>
+    /// <summary>Gets the CNPJ with a masking pattern applied.</summary>
     public string Mask => RegexService.MaskCnpj(_value);
 
-    /// <summary>
-    /// Gets the digits of the CNPJ.
-    /// </summary>
+    /// <summary>Gets the CNPJ with a security masking pattern applied.</summary>
+    public string SecurityMask => RegexService.SecurityMaskCnpj(_value);
+
+    /// <summary>Gets the digits of the CNPJ.</summary>
     public string Digits => _value[12..];
 
     private readonly string _value;

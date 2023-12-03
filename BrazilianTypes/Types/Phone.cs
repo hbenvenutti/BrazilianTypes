@@ -22,6 +22,12 @@ public readonly struct Phone : IType<Phone>, IMaskedType
     public string Mask => RegexService.MaskPhone(_value);
 
     /// <summary>
+    /// Gets the phone number without area code and with a security masking
+    /// pattern applied.
+    /// </summary>
+    public string SecurityMask => RegexService.SecurityMaskPhone(_value);
+
+    /// <summary>
     /// Gets the phone number without area code.
     /// </summary>
     public string Number => _value[2..];

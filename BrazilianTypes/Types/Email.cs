@@ -81,12 +81,7 @@ public readonly struct Email : IType<Email>
             return false;
         }
 
-        if (provider.EndsWith("."))
-        {
-            return false;
-        }
-
-        return true;
+        return !provider.EndsWith(".");
     }
 
     # endregion

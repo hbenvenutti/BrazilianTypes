@@ -1,53 +1,18 @@
-# BrazilianTypes 8.1 | .NET 8
+# BrazilianTypes
+![Static Badge](https://img.shields.io/badge/.NET-8-blue)
+![Nuget](https://img.shields.io/nuget/v/BrazilianTypes)
+![GitHub License](https://img.shields.io/github/license/hbenvenutti/BrazilianTypes)
+![GitHub repo size](https://img.shields.io/github/repo-size/hbenvenutti/BrazilianTypes)
+[![built with Codeium](https://codeium.com/badges/main)](https://codeium.com/badges/main)
 
 ---
 
 A biblioteca BrazilianTypes fornece tipos e funcionalidades para trabalhar com
 dados específicos do Brasil, como CPFs.
 
-<div id="header" >
-	<img
-		alt="GitHub release (latest by date)"
-		src="https://img.shields.io/github/v/release/hbenvenutti/BrazilianTypes?style=plastic"
-		title="Latest Release"
-	/>
-	<img
-		alt="GitHub last commit (dotnet7)"
-		src="https://img.shields.io/github/last-commit/hbenvenutti/BrazilianTypes/dotnet7?label=last%20commit&style=plastic"
-		title="Last Commit on dotnet7 branch"
-	/>
-	<img
-		alt="GitHub contributors"
-		src="https://img.shields.io/github/contributors/hbenvenutti/BrazilianTypes?style=plastic"
-		title="Contributors"
-	>
-	<img
-		alt="GitHub commit activity (dotnet7)"
-		src="https://img.shields.io/github/commit-activity/w/hbenvenutti/BrazilianTypes/dotnet7?style=plastic"
-	>
-	<img
-		alt="GitHub forks"
-		src="https://img.shields.io/github/forks/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-	<img
-		alt="GitHub Repo stars"
-		src="https://img.shields.io/github/stars/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-	<img
-		alt="GitHub watchers"
-		src="https://img.shields.io/github/watchers/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-	<img
-		alt="GitHub code size in bytes"
-		src="https://img.shields.io/github/languages/code-size/hbenvenutti/BrazilianTypes?style=plastic"
-	>
-</div>
-
----
-
 # Índice
 
-1. [BrazilianTypes](#braziliantypes-81--net-8)
+1. [BrazilianTypes](#braziliantypes)
 2. [Como Usar](#como-usar)
 3. [Interfaces](#interfaces)
    - [IType](#itypet)
@@ -128,6 +93,26 @@ readonly struct Password : IType<Password>
 
 ---
 
+# Data Annotations
+
+Pode-se usar data annotations para validar os objetos.
+
+- Todos os tipos tem anotações.
+
+```csharp
+public class User 
+{
+    [Required]
+    [Cpf(ErrorCode = 400)]
+    string Cpf { get; set; }
+     
+    [ZipCode]
+    string ZipCode { get; set; }
+}
+```
+
+---
+
 # Interfaces
 
 ## `IType<T>`
@@ -165,6 +150,17 @@ public interface IGenerable<out T>
     static abstract T Generate();
 }
 
+```
+
+## `ISecurityMaskedType`
+
+Interface para tipos que precisam esconder parte de seus dados.
+
+```csharp
+public interface ISecurityMaskedType
+{
+    string SecurityMask { get; }
+}
 ```
 
 ## `ISpecification<TCode, TType>`
@@ -219,6 +215,12 @@ string str = cpf;  // 12345678901
 string mask = cpf.Mask; // 123.456.789-01
 ```
 
+- `SecurityMask`: Obtém o CPF formatado com a máscara (\*\*\*.###.###-\*\*).
+
+```csharp 
+string mask = cpf.SecurityMask; // ***.456.789-**
+```
+
 - `Digits`: Obtém os dígitos do CPF.
 
 ```csharp 
@@ -263,7 +265,14 @@ string str = cnpj;  // 12345678000101;
 - `Mask`: Obtém o CNPJ formatado com a máscara (##.###.###/####-##).
 
 ```csharp 
-string mask = cnpj.Mask; // "12.345.678/0001-01"
+string mask = cnpj.Mask; // 12.345.678/0001-01
+```
+
+- `SecurityMask`: Obtém o CNPJ formatado com a máscara 
+(\*\*.###.###/\*\*\*\*-\*\*).
+
+```csharp 
+string mask = cnpj.SecurityMask; // **.345.678/****-**
 ```
 
 - `Digits`: Obtém os dígitos do CNPJ.
@@ -383,7 +392,14 @@ string str = phone;
  string landline = phone.Mask; // (51) 3333-4444
 ```
 
+- `SecurityMask`: Obtém o Phone formatado com a máscara ((##) \*\*\*\*-####).
+
+```csharp 
+string mask = phone.SecurityMask; // (51) ****-8888
+```
+
 - `IsMobile`: Obtém um valor que indica se o telefone é móvel.
+    
 ```csharp
  bool isMobile = phone.IsMobile; // true
 ```
